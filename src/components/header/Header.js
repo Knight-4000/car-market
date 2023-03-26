@@ -14,6 +14,9 @@ const logo = (
 </div>
 )
 
+const currentLink = ({ isActive }) => (isActive ? `current px-2` : "px-2")
+
+
 const Header = () => {
   return (
     <header>
@@ -21,22 +24,22 @@ const Header = () => {
         {logo}
         <nav>
           <ul className='list-none mx-auto hidden-mobile'>
-            <NavLink to="/" className={({isActive}) => (isActive ? `current px-2` : "px-2")}>
+            <NavLink to="/" className={currentLink}>
               Home
             </NavLink>
-            <NavLink to="/contact" className={({isActive}) => (isActive ? `current px-2` : "px-2")}>
+            <NavLink to="/contact" className={currentLink}>
               Contact
             </NavLink>
           </ul>
           <div className='user-links'>
             <span className='links hidden-mobile'>
-              <NavLink to="/login" className='px-2'>Login</NavLink>
-              <NavLink to="/register" className='px-2'>Register</NavLink>
+              <NavLink to="/login" className={currentLink}>Login</NavLink>
+              <NavLink to="/register" className={{currentLink}}>Register</NavLink>
             </span>
           </div>
         </nav>
         <div className='menu-icon'>
-          <Hamburger />
+          <Hamburger onCurrentLink={currentLink}/>
         </div>
       </div> 
     </header>

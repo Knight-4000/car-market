@@ -1,9 +1,10 @@
 import { useState }  from 'react';
 import './hamburger.css';
-import { useNavigate, Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 
-const Hamburger = () => {
-    const navigate = useNavigate()
+const currentLink = ({ isActive }) => (isActive ? `current px-2` : "px-2")
+
+const Hamburger = ({onCurrentLink}) => {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
     const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
@@ -31,8 +32,8 @@ const Hamburger = () => {
 
         <nav className={sidebar ? 'nav-menu active flex flex-col ' : 'nav-menu flex flex-col '}>
             <ul className='nav-menu-items block' onClick={showSidebar}>
-                <li className='text-center'><Link to="/" className='px-2' onClick={updateMenu} >Home</Link></li>
-                <li className='text-center'><Link to="/contact" className='px-2' onClick={updateMenu} >Contact</Link></li>
+                <li className='text-center'><NavLink to="/" onClick={updateMenu} className={currentLink}>Home</NavLink></li>
+                <li className='text-center'><NavLink to="/contact" onClick={updateMenu} className={currentLink}>Contact</NavLink></li>
             </ul>
           </nav>
     </>
