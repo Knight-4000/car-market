@@ -6,8 +6,8 @@ import Hamburger from '../Hamburger';
 const logo = (
   <div className='logo'>
     <Link to="/">
-      <h2 className='text-2xl logo-one text-white'>
-        Car<span className='logo-two'>Market</span>
+      <h2 className='text-2xl text-white'>
+        Car<span className='text-orange-500 cursor-pointer'>Market</span>
       </h2>
       <p className='tagline'>Shop Online. Stay Home.</p>
     </Link>
