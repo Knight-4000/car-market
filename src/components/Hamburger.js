@@ -23,7 +23,7 @@ const Hamburger = () => {
     }
   return (
     <>
-        <div className="burger-menu d-lg-none" onClick={updateMenu}>
+        <div className="burger-menu hidden-large" onClick={updateMenu}>
             <div className={burger_class} ></div>
             <div className={burger_class} ></div>
             <div className={burger_class} ></div>

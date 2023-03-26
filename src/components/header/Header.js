@@ -1,6 +1,6 @@
 import React from 'react'
 import './header.scss';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Hamburger from '../Hamburger';
 
 const logo = (
@@ -17,21 +17,21 @@ const logo = (
 const Header = () => {
   return (
     <header>
-      <div className='header'>
+     <div className="header">
         {logo}
         <nav>
-          <ul className='list-none mx-auto hidden md:block'>
-            <Link to="/" className='px-2'>
+          <ul className='list-none mx-auto hidden-mobile'>
+            <NavLink to="/" className={({isActive}) => (isActive ? `current px-2` : "px-2")}>
               Home
-            </Link>
-            <Link to="/contact" className='px-2'>
+            </NavLink>
+            <NavLink to="/contact" className={({isActive}) => (isActive ? `current px-2` : "px-2")}>
               Contact
-            </Link>
+            </NavLink>
           </ul>
           <div className='user-links'>
-            <span className='links hidden md:block'>
-              <Link to="/login" className='px-2'>Login</Link>
-              <Link to="/register" className='px-2'>Register</Link>
+            <span className='links hidden-mobile'>
+              <NavLink to="/login" className='px-2'>Login</NavLink>
+              <NavLink to="/register" className='px-2'>Register</NavLink>
             </span>
           </div>
         </nav>
