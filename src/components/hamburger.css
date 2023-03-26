@@ -1,24 +1,16 @@
-
-  .mobile-link{
-    font-family: Montserrat;
-    color:#FD349C;
-    text-decoration: none;
-  }
+nav {
+  width: 100%;
+  height: 5em;
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1em;
+  z-index: 9999;
+}
 
   .mobile-link:active, .mobile-link:focus, .nav-link:focus{
     color: #fff;
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 
-    0 0 15px #FD349C, 0 0 20px #FD349C, 0 0 25px #FD349C, 
-    0 0 30px #FD349C, 0 0 35px #FD349C;
-  }
-/* Added id of nav-hover to force hover properties to continue working after clicking link */
-  .nav-link:hover, #nav-hover:hover{
-    box-shadow: 0 0 0 3px #FD349C;
-    outline: none;
-    transition-duration: 0.6s;
-    transition-property: all;
-    border-radius: 12px;
-    cursor: pointer;
+
   }
 
   .nav-link:focus{
@@ -42,21 +34,20 @@
     width: 2em;
     height: 0.2em;
     margin-bottom: 1vh;
-    background-color: #FD349C;
+    background-color: #fff;
     border-radius: 0.5em;
 }
-
 .nav-menu {
-    background-color: #000;
-    width: 250px;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    transition: 850ms;
-  }
+  background-color: #000;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
   
   .nav-menu.active {
     left: 0;
@@ -67,7 +58,6 @@
   .nav-menu-items {
     z-index: 9999;
     color: #fff;
-    font-family: Montserrat;
     font-size: 2.075rem;
     padding-top: 6vh;
     cursor: pointer;

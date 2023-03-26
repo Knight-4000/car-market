@@ -29,11 +29,10 @@ const Hamburger = () => {
             <div className={burger_class} ></div>
         </div> 
 
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={showSidebar}>
-            <Link to="/" className='px-2' onClick={updateMenu} >Home</Link>
-            <Link to="/contact" className='px-2' onClick={updateMenu} >Contact</Link>
-     
+        <nav className={sidebar ? 'nav-menu active flex flex-col ' : 'nav-menu flex flex-col '}>
+            <ul className='nav-menu-items block' onClick={showSidebar}>
+                <li className='text-center'><Link to="/" className='px-2' onClick={updateMenu} >Home</Link></li>
+                <li className='text-center'><Link to="/contact" className='px-2' onClick={updateMenu} >Contact</Link></li>
             </ul>
           </nav>
     </>
