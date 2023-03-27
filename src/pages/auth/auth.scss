@@ -1,0 +1,146 @@
+
+.outer{
+    min-height:100%;
+    display:flex;
+}
+
+.inner{ margin: auto; }
+
+#img-container{
+    height: auto;
+    padding: 4rem 1rem;
+    background-position: center left;
+    animation: slide-down 0.7s ease;
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.img-container img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.form-container{
+    animation: slide-up 0.7s ease;
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+form{ width: 90%;}
+
+form a{text-decoration: none;}
+
+.reset{ position: relative; }
+
+.close{
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .img-container {
+        display: none;
+    }
+}
+
+h3 {
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid #000; 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+ } 
+ 
+ h3 span { 
+     background:#fff; 
+     padding:0 10px; 
+ }
+
+ .google-icon{
+    color:#fff;
+    font-size: 20px;
+    margin-right: 1vw;
+ }
+
+
+ .forgot-password, .register{
+    color: blue;
+ }
+
+// Password Icons
+
+.password{
+    position: relative;
+    .icon{
+        position: absolute;
+        top: 2.5rem;
+        right: 1rem;
+        cursor: pointer;
+    }
+}
+
+// Password Strength
+
+.reasons-list{
+    border-radius: 12px;
+}
+
+.reasons-list li{
+    padding-left: 2vw;
+    display: flex;
+    align-items: center;
+}
+
+.hide-hints{
+    display: none;
+}
+
+.show-hints{
+    display: block;
+    animation: slide-up 0.7s ease;
+
+}
+
+// Removes Key icon from password input field
+input::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+}
+
+// Password Strength 
+
+.pass-check{
+    color: green;
+}
+
+.fail-red{
+    color: red;
+}
+
+.disabled{
+   opacity: 0.7;
+    cursor: not-allowed;
+}
