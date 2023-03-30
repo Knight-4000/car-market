@@ -34,7 +34,7 @@ const Header = () => {
           <div className='user-links'>
             <span className='links hidden-mobile'>
               <NavLink to="/login" className={currentLink}>Login</NavLink>
-              <NavLink to="/register" className={{currentLink}}>Register</NavLink>
+              <NavLink to="/register" className={currentLink}>Register</NavLink>
             </span>
           </div>
         </nav>

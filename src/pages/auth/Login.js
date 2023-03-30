@@ -15,14 +15,14 @@ export default function Login() {
   
     return (
     <> 
-      <h2 className='text-center mt-2'>Login</h2>
+      <h2 className='banner text-center mt-2'>Login</h2>
         <div className='grid grid-cols-1 lg:grid-cols-2 '>
           <img id="img-container" className='object-cover' src={login} alt="car" style={{
                       backgroundSize: "cover",
             }}/>
-            <div className='form-container'>
+            <div className='form-container py-4'>
               <div className='outer'> 
-                <form className='form-control inner'>   
+                <form className='form-control inner py-2'>   
                   <div className="mb-1">
                     <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
                        Email Address
