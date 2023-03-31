@@ -67,7 +67,7 @@ export default function Regisiter({onLogin, onReset}) {
     <>
     <h2 className='banner text-center mt-2'>Register</h2>
       <div className='grid grid-cols-1 lg:grid-cols-2'>
-        <img id="img-container" className='object-cover inner' src={register} alt="car" style={{
+        <img id="img-container" className='object-cover' src={register} alt="car" style={{
                   backgroundSize: "cover",
           }}/>
         <div className='form-container py-4'>
@@ -116,7 +116,7 @@ export default function Regisiter({onLogin, onReset}) {
                 className={passComplete ? "mb-6 mt-2 w-full px-7 py-3 bg-blue-600 text-white text-sm uppercase rounded" :
                 "mb-6 mt-2 w-full px-7 py-3 bg-gray-500 disabled text-white text-sm uppercase rounded"}
                 >Sign Up</button>
-                  <Link className='forgot-password'>Forgot Password?</Link>
+                  <Link to='/reset' className='forgot-password'>Forgot Password?</Link>
                     <p>Already have an account?</p><Link to="/login" className='register'>
                     Login
                 </Link>
@@ -152,12 +152,11 @@ export default function Regisiter({onLogin, onReset}) {
                     </li>
                   </ul>
                 </div>
-                </div>
-                </form>
               </div>
-
-</div>
+            </form>
+          </div>
         </div>
+      </div>
     </>
   )
 }

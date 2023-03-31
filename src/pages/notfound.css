@@ -1,0 +1,17 @@
+.wrong-turn{ height: 80vh;}
+
+.wrong-turn h1{
+    font-family: Dancing Script;
+    font-size: 2.575em;
+    color: #1974D2;
+}
+
+.wrong-turn p{
+    font-family: Raleway;
+    font-family: 1.275em;
+}
+
+.home-link{ 
+    color: #1974D2; 
+    cursor: pointer;
+}

@@ -12,3 +12,8 @@
 }
 
 .inner{ margin: auto; }
+
+.inner-reset{
+    margin: auto;
+    width:80vw;
+}
