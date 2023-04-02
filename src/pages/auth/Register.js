@@ -1,12 +1,44 @@
 import {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import register from './register.jpg';
 import './auth.scss';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { GoPrimitiveDot } from "react-icons/go"
 import { FaCheck } from "react-icons/fa"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/config";
+import Loader from '../../components/loader/Loader';
 
-export default function Regisiter({onLogin, onReset}) {
+
+const Register = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [cPassword, setCPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate()
+  const registerUser = (e) => {
+    e.preventDefault()
+    if(password !== cPassword) {
+    toast.error("Passwords do not match")
+    }
+    setIsLoading(true)
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setIsLoading(false)
+        toast.success("Yay! Let's go buy a car!")
+        navigate("/login")
+      })
+      .catch((error) => {
+        toast.error(error.message)
+        setIsLoading(false)
+      });
+  }
+
   const [showPassword, setShowPassword] = useState (false);
   const [showInstructions, setShowInstructions] = useState (false);
 
@@ -22,12 +54,17 @@ export default function Regisiter({onLogin, onReset}) {
     setShowPassword(!showPassword)
   };
 
+  const toggleCPassword = () => {
+    setShowPassword(!showPassword)
+  };
+
   const handleShowInstructions = () => {
     setShowInstructions(true)
   };
 
   const handlePasswordChange = (e) => {
     setPass(e.target.value)
+    setPassword(e.target.value)
   };
 
   // Password Strength UseEffect
@@ -45,7 +82,7 @@ export default function Regisiter({onLogin, onReset}) {
       setPassNumber(false)
     }
 
-    if (pass.match(/([!,%,&,@,$,^,*,?,_,`])/)) {
+    if (pass.match(/([!,%,&,@,$,#,^,*,?,_,`])/)) {
       setPassChar(true)
     } else {
       setPassChar(false)
@@ -59,39 +96,32 @@ export default function Regisiter({onLogin, onReset}) {
 
     if (passLetter && passNumber && passChar && passLength) {
       setPassComplete(true)
+
     } else {
       setPassComplete(false)
     }
   }, [pass, passLetter, passNumber, passChar, passLength])
   return (
     <>
+    <ToastContainer />
+    {isLoading && <Loader />}
     <h2 className='banner text-center mt-2'>Register</h2>
       <div className='grid grid-cols-1 lg:grid-cols-2'>
         <img id="img-container" className='object-cover' src={register} alt="car" style={{
                   backgroundSize: "cover",
           }}/>
-        <div className='form-container py-4'>
+        <div className='form-container -mt-14 mb-6'>
           <div className='outer'>
-            <form className='form-control inner py-4'>
-                <div className="mb-1">
-                  <label htmlFor="name" className="block mb-2 text-sm text-gray-600">
-                    Full Name
-                  </label>
-                  <input
-                   type="text"
-                   name="user_name"
-                   placeholder="John Doe"
-                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring"
-                  />
-                </div>
+            <form onSubmit={registerUser} className='form-control inner py-4'>
                 <div className="mb-1">
                  <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
                     Email Address
                  </label>
                   <input
                     type="email"
-                    name='user_email'
                     placeholder="Email"
+                    required value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring"
                   />
                 </div>
@@ -101,14 +131,26 @@ export default function Regisiter({onLogin, onReset}) {
                  </label>
                   <input
                     type={showPassword ? "text" : "password"}
-                    name='user_password'
                     placeholder="Password"
                     onFocus={handleShowInstructions}
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring"
-                    value={pass}
+                    required value={password}
                     onChange={handlePasswordChange}
                   />
                   <span className='icon' onClick={togglePassword}>
+                    {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible /> }
+                  </span>
+                  <label htmlFor="password" className="block mb-2 text-sm text-gray-600">
+                    Password Confirm
+                 </label>
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring"
+                    required value={cPassword}
+                    onChange={(e) => setCPassword(e.target.value)}
+                  />
+                  <span className='icon' onClick={toggleCPassword}>
                     {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible /> }
                   </span>
                 </div>
@@ -160,3 +202,5 @@ export default function Regisiter({onLogin, onReset}) {
     </>
   )
 }
+
+export default Register
