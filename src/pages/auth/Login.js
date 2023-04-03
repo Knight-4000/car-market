@@ -1,20 +1,51 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import login from './login.jpg';
 import './auth.scss';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { GrGooglePlus } from 'react-icons/gr'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/config";
+import Loader from '../../components/loader/Loader';
 
 export default function Login() {
+  const [email, setEmail] = useState("")
+  const [showPassword, setShowPassword] = useState (false);
 
-    const [showPassword, setShowPassword] = useState (false);
+  const [password, setPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
 
-    const togglePassword = () => {
-      setShowPassword(!showPassword)
-    };
-  
+  const navigate = useNavigate()
+  const loginUser = (e) => {
+    e.preventDefault();
+    setIsLoading(true)
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+    const user = userCredential.user;
+    setIsLoading(false)
+    toast.success("Welcome back...")
+    navigate("/")
+  })
+  .catch((error) => {
+    setIsLoading(false)
+    toast.error(error.message)
+  });
+
+  }
+  const togglePassword = () => {
+    setShowPassword(!showPassword)
+  };
+
+  const handleShowInstructions = () => {
+    setShowInstructions(true)
+  };
+
+  const [showInstructions, setShowInstructions] = useState (false);
+
     return (
     <> 
+    {isLoading && <Loader />}
       <h2 className='banner text-center mt-2'>Login</h2>
         <div className='grid grid-cols-1 lg:grid-cols-2 '>
           <img id="img-container" className='object-cover' src={login} alt="car" style={{
@@ -22,14 +53,15 @@ export default function Login() {
             }}/>
             <div className='form-container py-4'>
               <div className='outer'> 
-                <form className='form-control inner py-2'>   
+                <form onSubmit={loginUser} className='form-control inner py-2'>   
                   <div className="mb-1">
                     <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
                        Email Address
                     </label>
                     <input
                       type="email"
-                      name='user_email'
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       placeholder="your@email.com"
                       className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring"
                     />
@@ -40,7 +72,9 @@ export default function Login() {
                    </label>
                     <input
                       type={showPassword ? "text" : "password"}
-                      name='user_email'
+                      value={password}
+                      onFocus={handleShowInstructions}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Password"
                       className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring"
                     />
