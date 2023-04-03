@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import login from './login.jpg';
 import './auth.scss';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'

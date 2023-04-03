@@ -5,12 +5,15 @@ import { Header, Footer } from './components'
 // Pages 
 import { Home, Contact, Login, Register, Reset } from './pages'
 import NotFound from './pages/NotFound';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
   return (
     <>
     <Router>
+      <ToastContainer />
       <Header />
         <Routes>
           <Route path="/" element={<Home />} />
