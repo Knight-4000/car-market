@@ -6,7 +6,10 @@ import login from './login.jpg';
 import './auth.scss';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { GrGooglePlus } from 'react-icons/gr'
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword, 
+  GoogleAuthProvider, 
+  signInWithPopup 
+} from "firebase/auth";
 import { auth} from "../../firebase/config";
 import Loader from '../../components/loader/Loader';
 
@@ -24,7 +27,6 @@ export default function Login() {
     setIsLoading(true)
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-    const user = userCredential.user;
     setIsLoading(false)
     toast.success("Welcome back...")
     navigate("/")
@@ -32,8 +34,8 @@ export default function Login() {
   .catch((error) => {
     setIsLoading(false)
   });
+  }; 
 
-  }
 
   // Log in with Google
 
@@ -45,6 +47,7 @@ export default function Login() {
       navigate("/")
       })
       .catch((error) => {
+        setIsLoading(false)
         toast.error(error.message);
       });
   };

@@ -1,15 +1,43 @@
 import './auth.scss';
 import { Link } from 'react-router-dom'
-export default function Reset() {
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { auth } from "../../firebase/config";
+import { sendPasswordResetEmail } from "firebase/auth";
+import Loader from "../../components/loader/Loader";
+ const Reset = () => {
+  
+  const [email, setEmail] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+
+  const resetPassword = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setIsLoading(false);
+        toast.success("Check your email for a reset link");
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        toast.error(error.message);
+      });
+  };
+
   return (
     <>
       <div className='password-reset'>
         <div className="h-screen flex flex-col items-center 
           justify-center">
-            <form className='pt-5'>
+            <form className='pt-5' onSubmit={resetPassword}>
             <h2 className='text-center banner'>Password Reset</h2>
               <input type="email" placeholder="Email address" 
-                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring" />
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring" 
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  />
               <button type="submit"
                 className='mb-6 mt-2 w-full px-7 py-3 bg-blue-600 text-white text-sm uppercase rounded'>
                 Send New Password
@@ -28,3 +56,5 @@ export default function Reset() {
     </>
   )
 }
+
+export default Reset;
