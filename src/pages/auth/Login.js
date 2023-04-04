@@ -6,8 +6,8 @@ import login from './login.jpg';
 import './auth.scss';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { GrGooglePlus } from 'react-icons/gr'
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/config";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth} from "../../firebase/config";
 import Loader from '../../components/loader/Loader';
 
 export default function Login() {
@@ -18,6 +18,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate()
+
   const loginUser = (e) => {
     e.preventDefault();
     setIsLoading(true)
@@ -30,10 +31,27 @@ export default function Login() {
   })
   .catch((error) => {
     setIsLoading(false)
-    toast.error(error.message)
   });
 
   }
+
+  // Log in with Google
+
+  const provider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+      toast.success("Login Successfully");
+      navigate("/")
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+
+  // Showing password or not in form by clicking icon
+  
   const togglePassword = () => {
     setShowPassword(!showPassword)
   };
@@ -94,7 +112,7 @@ export default function Login() {
                     rounded mb-6 mt-2 w-full px-7 py-3 text-white font-medium text-sm uppercase 
                     shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 
                     focus:shadow-lg active:bg-orange-800 active:shadow-lg transition duration-150 
-                    ease-in-out"><GrGooglePlus className='google-icon' /> Sign in with Google
+                    ease-in-out" onClick={signInWithGoogle}><GrGooglePlus className='google-icon' /> Sign in with Google
                   </button>
                   <Link className='forgot-password'>Forgot Password?</Link>
                     <p>Don't have an account?</p><Link to="/register" className='register'>
