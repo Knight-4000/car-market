@@ -27,6 +27,7 @@ import Loader from "../../components/loader/Loader";
 
   return (
     <>
+    {isLoading && <Loader />}
       <div className='password-reset'>
         <div className="h-screen flex flex-col items-center 
           justify-center">

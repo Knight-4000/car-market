@@ -10,7 +10,7 @@ import { signInWithEmailAndPassword,
   GoogleAuthProvider, 
   signInWithPopup 
 } from "firebase/auth";
-import { auth} from "../../firebase/config";
+import { auth } from "../../firebase/config";
 import Loader from '../../components/loader/Loader';
 
 export default function Login() {
