@@ -35,16 +35,24 @@ const Header = () => {
     useEffect(() => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
-   
-          setDisplayName(user.displayName)
+
+        if (user.displayName == null) {
+          // take the @gmail off username
+          const u1 = user.email.slice(0, -10);
+          // take off and capitalize first letter of username
+          const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
+          setDisplayName(uName)
+        } else {
+          setDisplayName(user.displayName) 
+        }
+
           dispatch(SET_ACTIVE_USER({
             email: user.email,
             userName: user.displayName ? user.displayName : displayName,
             userID: user.uid,
           }))
         } else {
-          // User is signed out
-          // ...
+          setDisplayName("")
         }
       });
     }, [])
