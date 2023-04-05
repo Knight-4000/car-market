@@ -37,8 +37,7 @@ const Header = () => {
         if (user) {
 
         if (user.displayName == null) {
-          // take the @gmail off username
-          const u1 = user.email.slice(0, -10);
+          const u1 = user.email.substring(0, user.email.indexOf("@"));
           // take off and capitalize first letter of username
           const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
           setDisplayName(uName)
