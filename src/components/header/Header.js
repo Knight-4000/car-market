@@ -13,6 +13,8 @@ import {
   REMOVE_ACTIVE_USER
 } from "../../redux/slice/authSlice";
 
+import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
+
 
 const logo = (
   <div className='logo'>
@@ -85,11 +87,18 @@ const Header = () => {
           </ul>
           <div className='user-links'>
             <span className='links hidden-mobile'>
+              <ShowOnLogin>
            <a href="#user" className='px-2'><FaUserCircle size={16} className="user-icon" />
               {displayName}</a>  
-              <NavLink to="/login" className={currentLink}>Login</NavLink>
-              <NavLink to="/register" className={currentLink}>Register</NavLink>
-              <NavLink to="/" onClick={logoutUser}>Logout</NavLink>
+              </ShowOnLogin>
+              <ShowOnLogout>
+                <NavLink to="/login" className={currentLink}>Login</NavLink>
+              
+                <NavLink to="/register" className={currentLink}>Register</NavLink>
+                </ShowOnLogout>
+              <ShowOnLogin>
+                <NavLink to="/" onClick={logoutUser}>Logout</NavLink>
+              </ShowOnLogin>
             </span>
           </div>
         </nav>
