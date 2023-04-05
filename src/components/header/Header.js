@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './header.scss';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Hamburger from '../Hamburger';
 import { auth } from "../../firebase/config";
-import { getAuth, signOut } from 'firebase/auth';
+import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaUserCircle } from 'react-icons/fa';
 
 
 const logo = (
@@ -17,12 +18,29 @@ const logo = (
       <p className='tagline'>Shop Online. Stay Home.</p>
     </Link>
 </div>
+
 )
 
 const currentLink = ({ isActive }) => (isActive ? `current px-2` : "px-2")
 
 const Header = () => {
   const navigate = useNavigate()
+  const [displayName, setDisplayName] = useState("");
+
+  // Verify if user is logged in
+    useEffect(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          setDisplayName(user.displayName)
+          // ...
+        } else {
+          // User is signed out
+          // ...
+        }
+      });
+    }, [])
+
   const logoutUser = () => {
     signOut(auth).then(() => {
       toast.success("You have logged out")
@@ -48,6 +66,8 @@ const Header = () => {
           </ul>
           <div className='user-links'>
             <span className='links hidden-mobile'>
+           <a href="#" className='px-2'><FaUserCircle size={16} className="user-icon" />
+              {displayName}</a>  
               <NavLink to="/login" className={currentLink}>Login</NavLink>
               <NavLink to="/register" className={currentLink}>Register</NavLink>
               <NavLink to="/" onClick={logoutUser}>Logout</NavLink>

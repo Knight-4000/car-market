@@ -110,12 +110,13 @@ const Login = () => {
                     Login
                   </button>
                   <p className="text-center">Or</p>
-                  <button type="submit" 
+                  <button type="submit" style={{display: "flex", justifyContent: "center"}}
               className="bg-orange-600 inline-flex items-center px-3 py-3 font-medium 
               rounded mb-6 mt-2 w-full px-7 py-3 text-white font-medium text-sm uppercase 
               shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 
               focus:shadow-lg active:bg-orange-800 active:shadow-lg transition duration-150 
-              ease-in-out" onClick={signInWithGoogle}><GrGooglePlus className='google-icon' /> Sign in with Google
+              ease-in-out" 
+              onClick={signInWithGoogle}><GrGooglePlus className='google-icon' /> Sign in with Google
           </button>
                   <Link className='forgot-password'>Forgot Password?</Link>
                     <p>Don't have an account?</p><Link to="/register" className='register'>
