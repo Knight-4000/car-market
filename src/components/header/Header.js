@@ -3,12 +3,15 @@ import './header.scss';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Hamburger from '../Hamburger';
 import { auth } from "../../firebase/config";
-import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
+import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaUserCircle } from 'react-icons/fa';
 import { useDispatch } from "react-redux";
-import { SET_ACTIVE_USER } from "../../redux/slice/authSlice";
+import { 
+  SET_ACTIVE_USER,
+  REMOVE_ACTIVE_USER
+} from "../../redux/slice/authSlice";
 
 
 const logo = (
@@ -52,9 +55,10 @@ const Header = () => {
           }))
         } else {
           setDisplayName("")
+          dispatch(REMOVE_ACTIVE_USER());
         }
       });
-    }, [])
+    }, [dispatch, displayName])
 
   const logoutUser = () => {
     signOut(auth).then(() => {
@@ -81,7 +85,7 @@ const Header = () => {
           </ul>
           <div className='user-links'>
             <span className='links hidden-mobile'>
-           <a href="#" className='px-2'><FaUserCircle size={16} className="user-icon" />
+           <a href="#user" className='px-2'><FaUserCircle size={16} className="user-icon" />
               {displayName}</a>  
               <NavLink to="/login" className={currentLink}>Login</NavLink>
               <NavLink to="/register" className={currentLink}>Register</NavLink>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import './auth.scss';
 import login from './login.jpg';
 import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
@@ -11,14 +10,12 @@ import {
 import { auth } from "../../firebase/config";
 import { toast } from "react-toastify";
 import Loader from "../../components/loader/Loader";
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { GrGooglePlus } from 'react-icons/gr'
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState (false);
 
   const navigate = useNavigate();
 
@@ -28,7 +25,6 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
         setIsLoading(false);
         toast.success("Welcome back...");
         navigate("/");
@@ -44,7 +40,6 @@ const Login = () => {
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const user = result.user;
         toast.success("Login Successfully");
         navigate("/");
       })
@@ -52,18 +47,6 @@ const Login = () => {
         toast.error(error.message);
       });
   };
-
-    // Showing password or not in form by clicking icon
-  
-    const togglePassword = () => {
-      setShowPassword(!showPassword)
-    };
-  
-    const handleShowInstructions = () => {
-      setShowInstructions(true)
-    };
-  
-    const [showInstructions, setShowInstructions] = useState (false);
 
     return (
       <>
