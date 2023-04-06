@@ -1,0 +1,15 @@
+.opening{
+    height: 65vh;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/car-market-f4481.appspot.com/o/driver.jpg?alt=media&token=024e8dc2-e0b8-46f6-b9f4-24b0180842a1');
+    background-position: 20% 30%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.opening h1{
+    font-family: Dancing Script;
+    font-size: 2.075rem;
+    z-index: 9999;
+    color: #fff;
+}
