@@ -1,4 +1,5 @@
 import React from "react";
+import './AddAuto.scss';
 
  const AddAuto = () => {
    return (

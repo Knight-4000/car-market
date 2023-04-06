@@ -3,7 +3,8 @@ import './App.css';
 // Components
 import { Header, Footer } from './components'
 // Pages 
-import { Home, Contact, Login, Register, Reset } from './pages'
+import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
+import { Home, Contact, Login, Register, Reset, Admin } from './pages'
 import NotFound from './pages/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,6 +23,14 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/reset" element={<Reset />} />
           <Route path="*" element={<NotFound />} />
+          <Route
+             path="/admin/*"
+             element={
+               <AdminOnlyRoute>
+                 <Admin />
+               </AdminOnlyRoute>
+             }
+           />
         </Routes>
         <Footer />
       </Router>
