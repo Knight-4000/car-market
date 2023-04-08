@@ -13,9 +13,8 @@ import {
   REMOVE_ACTIVE_USER
 } from "../../redux/slice/authSlice";
 
-
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
-import AdminOnlyRoute from '../adminOnlyRoute/AdminOnlyRoute';
+import { AdminOnlyLink } from "../adminOnlyRoute/AdminOnlyRoute";
 
 
 const logo = (
@@ -80,11 +79,11 @@ const Header = () => {
         {logo}
         <nav>
           <ul className='list-none mx-auto hidden-mobile'>
-          <AdminOnlyRoute>
-          <NavLink to="/admin/home" className="pr-2">
-              Admin
-          </NavLink>
-          </AdminOnlyRoute>
+            <AdminOnlyLink>
+              <NavLink to="/admin/home" className="pr-2">
+                  Admin
+              </NavLink>
+            </AdminOnlyLink>
               
             <NavLink to="/" className={currentLink}>
               Home
