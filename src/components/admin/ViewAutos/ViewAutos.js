@@ -37,13 +37,54 @@ const ViewAutos = () => {
     } catch(error) {
       setIsLoading(false)
       toast.error(error.message)
-
     }
   };
   return (
     <>
-      <div>
+      <div className='table'>
+        <h2 className='text-center'>Our Latest Rides</h2>
+          {autos.length === 0 ? (
+            <p>No vehicles in inventory.</p>
 
+          ) : (
+          <table>
+           <thead>
+              <tr>
+                <th></th>
+                <th>Image</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Mileage</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            {autos.map((auto, index) => {
+              const { id, price, imageURL, category, make, model, mileage } = auto;
+              return (
+                <tbody>
+                  <tr key={id}>
+                    <td></td>
+                    <td>
+                      <img
+                        src={imageURL}
+                        alt={model}
+                        style={{ width: "100px" }}
+                      />
+                    </td>
+                    <td>{make}</td>
+                    <td>{model}</td>
+                    <td>{category}</td>
+                    <td>{mileage}</td>
+                    <td>{}</td>
+                    <td>{`$${price}`}</td>
+                  </tr>
+                </tbody>
+              );
+            })}
+
+          </table>
+
+          )}
       </div>
       
     </>
