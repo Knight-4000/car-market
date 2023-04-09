@@ -74,7 +74,7 @@ const AddAuto = () => {
             price: Number(auto.price),
             category: auto.category,
             desc: auto.desc,
-            mileage: auto.mileage,
+            mileage: Number(auto.mileage),
             make: auto.make,
             model: auto.model,
             createdAt: Timestamp.now().toDate(),
