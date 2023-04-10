@@ -18,7 +18,7 @@
     price: 0,
     category: "",
     make: "",
-    model: "",
+    name: "",
     mileage: 0,
     desc: "",
   };
@@ -76,7 +76,7 @@ const AddAuto = () => {
             desc: auto.desc,
             mileage: Number(auto.mileage),
             make: auto.make,
-            model: auto.model,
+            model: auto.name,
             createdAt: Timestamp.now().toDate(),
           });
           setIsLoading(false);
@@ -113,8 +113,8 @@ const AddAuto = () => {
                 type="text"
                 placeholder="Model"
                 required
-                name="model"
-                value={auto.model}
+                name="name"
+                value={auto.name}
                 onChange={(e) => handleInputChange(e)}
             />
 

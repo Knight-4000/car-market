@@ -1,28 +1,36 @@
-import React from 'react'
-import './auto.scss';
-import AutoFilter from './autoFilter/AutoFilter';
-import AutoList from './autoList/AutoList';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useFetchCollection from "../../customHooks/useFetchCollection";
+import { selectAutos, STORE_AUTOS } from "../../redux/slice/autoSlice";
+import "./auto.scss";
+import AutoFilter from "./autoFilter/AutoFilter";
+import AutoList from "./autoList/AutoList";
 
+const Product = () => {
+  const { data, isLoading } = useFetchCollection("autos");
+  const autos = useSelector(selectAutos);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(
+      STORE_AUTOS({
+        autos: data,
+      })
+    );
+  }, [dispatch, data]);
 
-
-const Auto = () => {
   return (
-    <>
-      <section>
-        <div className='container'>
-          <div className='auto'>
-            <aside className='filter'>
-              <AutoFilter />
-            </aside>
-            <div className='content'>
-              <AutoList />
-            </div>
-          </div>
+    <section>
+      <div className="auto">
+        <aside className="filter">
+          <AutoFilter />
+        </aside>
+        <div className="content">
+          <AutoList autos={autos} />
         </div>
-      </section>
-    </>
-  )
-}
+      </div>
+    </section>
+  );
+};
 
-export default Auto
+export default Product;

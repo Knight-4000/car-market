@@ -1,94 +1,91 @@
-import { useState, useEffect } from 'react'
-import { 
+import {
   collection,
   onSnapshot,
   orderBy,
   query,
-} from '@firebase/firestore';
+} from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { db } from "../../../firebase/config";
-import { toast } from 'react-toastify';
 import './ViewAutos.scss';
+import Loader from "../../loader/Loader";
 
 const ViewAutos = () => {
-  const [autos, setAutos] = useState([])
-  const [isLoading, setIsLoading] = useState((false))
+  const [autos, setAutos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getAutos();
   }, []);
 
   const getAutos = () => {
-    setIsLoading(true)
+    setIsLoading(true);
 
     try {
-      const autosRef = collection(db, "autos")
+      const autosRef = collection(db, "autos");
       const q = query(autosRef, orderBy("createdAt", "desc"));
-      // const q = query(autosRef, orderBy("name", "desc"), limit(6));
 
       onSnapshot(q, (snapshot) => {
+        // console.log(snapshot.docs);
         const allAutos = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
+        console.log(allAutos);
         setAutos(allAutos);
         setIsLoading(false);
       });
-
-    } catch(error) {
-      setIsLoading(false)
-      toast.error(error.message)
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
     }
   };
+
   return (
     <>
-      <div className='table'>
-        <h2 className='text-center'>Our Latest Rides</h2>
-          {autos.length === 0 ? (
-            <p>No vehicles in inventory.</p>
+      {isLoading && <Loader />}
+      <div className="table">
+        <h2>All Products</h2>
 
-          ) : (
+        {autos.length === 0 ? (
+          <p>No product found.</p>
+        ) : (
           <table>
-           <thead>
+            <thead>
               <tr>
-                <th></th>
+                <th>s/n</th>
                 <th>Image</th>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Mileage</th>
+                <th>Name</th>
+                <th>Category</th>
                 <th>Price</th>
+                <th>Actions</th>
               </tr>
             </thead>
             {autos.map((auto, index) => {
-              const { id, price, imageURL, category, make, model, mileage } = auto;
+              const { id, make, price, imageURL, category } = auto;
               return (
                 <tbody>
                   <tr key={id}>
-                    <td></td>
+                    <td>{index + 1}</td>
                     <td>
                       <img
                         src={imageURL}
-                        alt={model}
+                        alt={make}
                         style={{ width: "100px" }}
                       />
                     </td>
                     <td>{make}</td>
-                    <td>{model}</td>
                     <td>{category}</td>
-                    <td>{mileage}</td>
-                    <td>{}</td>
                     <td>{`$${price}`}</td>
                   </tr>
                 </tbody>
               );
             })}
-
           </table>
-
-          )}
+        )}
       </div>
-      
     </>
-  )
-}
+  );
+};
 
-export default ViewAutos
+export default ViewAutos;
