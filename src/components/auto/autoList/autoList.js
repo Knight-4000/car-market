@@ -1,90 +1,46 @@
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { db } from "../../../firebase/config";
+import React, { useState } from "react";
 import './autolist.scss';
-import Loader from "../../loader/Loader";
+import { BsFillGridFill } from "react-icons/bs";
+import { FaListAlt } from "react-icons/fa";
 
 const AutoList = () => {
-  const [autos, setAutos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    getAutos();
-  }, []);
-
-  const getAutos = () => {
-    setIsLoading(true);
-
-    try {
-      const autosRef = collection(db, "autos");
-      const q = query(autosRef, orderBy("createdAt", "desc"));
-
-      onSnapshot(q, (snapshot) => {
-        // console.log(snapshot.docs);
-        const allAutos = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        console.log(allAutos);
-        setAutos(allAutos);
-        setIsLoading(false);
-      });
-    } catch (error) {
-      setIsLoading(false);
-      toast.error(error.message);
-    }
-  };
+  const [grid, setGrid] = useState(true);
 
   return (
-    <>
-      {isLoading && <Loader />}
-      <div className="table">
-        <h2>All Products</h2>
+    <div className="auto-list" id="auto">
+      <div className="top">
+        <div className="icons">
+          <BsFillGridFill
+            size={22}
+            color="##FF2400"
+            onClick={() => setGrid(true)}
+          />
 
-        {autos.length === 0 ? (
-          <p>No product found.</p>
-        ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>s/n</th>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            {autos.map((auto, index) => {
-              const { id, make, price, imageURL, category } = auto;
-              return (
-                <tbody>
-                  <tr key={id}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <img
-                        src={imageURL}
-                        alt={make}
-                        style={{ width: "100px" }}
-                      />
-                    </td>
-                    <td>{make}</td>
-                    <td>{category}</td>
-                    <td>{`$${price}`}</td>
-                  </tr>
-                </tbody>
-              );
-            })}
-          </table>
-        )}
+          <FaListAlt size={24} color="#0066d4" 
+          onClick={() => setGrid(false)} />
+
+          <p>
+            <b>10</b> Vehicles found.
+          </p>
+        </div>
+        {/* Search Icon */}
+        <div>
+          <p>Search</p>
+        </div>
+        {/* Sort Products */}
+        <div className="">
+          <label>Sort by:</label>
+          <select>
+            <option value="latest">Latest</option>
+            <option value="lowest-price">Lowest Price</option>
+            <option value="highest-price">Highest Price</option>
+            <option value="mileage-sixty">Below 60K miles</option>
+            <option value="a-z">A - Z</option>
+            <option value="z-a">Z - A</option>
+          </select>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

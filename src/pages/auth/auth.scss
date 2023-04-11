@@ -167,3 +167,12 @@ input::-webkit-credentials-auto-fill-button {
     font-family: Raleway;
     font-size: 1.075em;
 }
+
+// media query for gap between form and image on medium and lower screens
+
+@media (max-width: 767px) {
+    .form-container {
+     margin-top: -15vh;
+    }
+  }
+
