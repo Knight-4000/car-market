@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import './autolist.scss';
 import { BsFillGridFill } from "react-icons/bs";
 import { FaListAlt } from "react-icons/fa";
+import Search from "../../search/Search";
 
 const AutoList = () => {
   const [grid, setGrid] = useState(true);
+  const [search, setSearch] = useState("");
 
   return (
     <div className="auto-list" id="auto">
@@ -23,9 +25,9 @@ const AutoList = () => {
             <b>10</b> Vehicles found.
           </p>
         </div>
-        {/* Search Icon */}
         <div>
-          <p>Search</p>
+          <Search value={search} 
+          onChange={(e) => setSearch(e.target.value)} />
         </div>
         {/* Sort Products */}
         <div className="">
