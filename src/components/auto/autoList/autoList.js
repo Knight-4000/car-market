@@ -3,8 +3,9 @@ import './autolist.scss';
 import { BsFillGridFill } from "react-icons/bs";
 import { FaListAlt } from "react-icons/fa";
 import Search from "../../search/Search";
+import AutoItem from "../autoItem/autoItem";
 
-const AutoList = () => {
+const AutoList = ({autos}) => {
   const [grid, setGrid] = useState(true);
   const [search, setSearch] = useState("");
 
@@ -41,6 +42,24 @@ const AutoList = () => {
             <option value="z-a">Z - A</option>
           </select>
         </div>
+      </div>
+      <div className={grid ? "grid" : "list"}>
+        {autos.length === 0? (
+          <p>No cars on lot.</p>
+        ) : (
+          <>
+            {autos.map((auto) => {
+              return (
+                <div key={auto}>
+                  <AutoItem {...auto} grid={grid} 
+                  auto={auto}/>
+                </div>
+              )
+
+            })}
+          </>
+        )}
+
       </div>
     </div>
   );

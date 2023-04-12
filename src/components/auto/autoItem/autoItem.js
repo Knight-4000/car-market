@@ -1,12 +1,11 @@
 import React from 'react'
-import './autoitem.scss';
 
-const autoItem = () => {
+const AutoItem = () => {
   return (
     <div>
-      
+     <h1>Camaro</h1>
     </div>
   )
 }
 
-export default autoItem
+export default AutoItem

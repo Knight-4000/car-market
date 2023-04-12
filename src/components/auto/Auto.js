@@ -5,6 +5,8 @@ import { selectAutos, STORE_AUTOS } from "../../redux/slice/autoSlice";
 import "./auto.scss";
 import AutoFilter from "./autoFilter/AutoFilter";
 import AutoList from "./autoList/AutoList";
+import AutoItem from "./autoItem/autoItem";
+
 
 const Product = () => {
   const { data, isLoading } = useFetchCollection("autos");
@@ -27,6 +29,7 @@ const Product = () => {
         </aside>
         <div className="content">
           <AutoList autos={autos} />
+          <AutoItem />
         </div>
       </div>
     </section>
