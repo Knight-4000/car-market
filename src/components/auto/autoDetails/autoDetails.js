@@ -1,7 +1,7 @@
 import React from 'react'
-import './autodetaiils.scss';
+import './autodetails.scss';
 
-const autoDetails = () => {
+const AutoDetails = () => {
   return (
     <div>
       
@@ -9,4 +9,4 @@ const autoDetails = () => {
   )
 }
 
-export default autoDetails
+export default AutoDetails

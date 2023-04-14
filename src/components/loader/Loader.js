@@ -3,10 +3,7 @@ import ReactDOM  from 'react-dom';
 
 const Loader = () => {
   return ReactDOM.createPortal (
-    <div className='wrapper'>
-      <div className='simple-loader'>
-      </div>
-    </div>,
+      <span class="loader"></span>,
     document.getElementById("loader")
   )
 }

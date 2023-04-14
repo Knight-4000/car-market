@@ -1,91 +1,58 @@
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { db } from "../../../firebase/config";
 import './ViewAutos.scss';
-import Loader from "../../loader/Loader";
 
-const ViewAutos = () => {
-  const [autos, setAutos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+export default function Autos({auto, id}) {
+  const [autos, setAutos] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getAutos();
-  }, []);
-
-  const getAutos = () => {
-    setIsLoading(true);
-
-    try {
+    async function fetchAutos() {
       const autosRef = collection(db, "autos");
-      const q = query(autosRef, orderBy("createdAt", "desc"));
-
-      onSnapshot(q, (snapshot) => {
-        // console.log(snapshot.docs);
-        const allAutos = snapshot.docs.map((doc) => ({
+      const q = query(autosRef, orderBy("timestamp", "desc"));
+      const querySnap = await getDocs(q);
+      let autos = [];
+      querySnap.forEach((doc) => {
+        return autos.push({
           id: doc.id,
-          ...doc.data(),
-        }));
-        console.log(allAutos);
-        setAutos(allAutos);
-        setIsLoading(false);
+          data: doc.data(),
+        });
       });
-    } catch (error) {
-      setIsLoading(false);
-      toast.error(error.message);
+      setAutos(autos);
+      setLoading(false);
     }
-  };
-
+    fetchAutos();
+  }, []);
   return (
-    <>
-      {isLoading && <Loader />}
-      <div className="table">
-        <h2>All Products</h2>
-
-        {autos.length === 0 ? (
-          <p>No product found.</p>
-        ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>s/n</th>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            {autos.map((auto, index) => {
-              const { id, make, price, imageURL, category } = auto;
-              return (
-                <tbody>
-                  <tr key={id}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <img
-                        src={imageURL}
-                        alt={make}
-                        style={{ width: "100px" }}
-                      />
-                    </td>
-                    <td>{make}</td>
-                    <td>{category}</td>
-                    <td>{`$${price}`}</td>
-                  </tr>
-                </tbody>
-              );
-            })}
-          </table>
-        )}
-      </div>
-    </>
-  );
-};
-
-export default ViewAutos;
+    autos && (
+      <div className="mx-auto">
+        <h1 className='text-center footer-banner'>Autos for sale</h1>
+          <div className="bg-purple-100">
+            <div className="grid gap-2 md:grid-cols-1 lg:grid-cols-2 sm:grid-cols-1 container mx-auto px-4 py-4">
+                {autos.map(({ auto, id }) => (
+                <div key={id}>
+                  <div
+                    style={{
+                      background: `url(${auto.images[0]}) `,
+                      backgroundSize: "cover",
+                    }}
+                    className="animal-image"
+                  >
+                </div>
+                  <p className="animal-name text-center text-xl mb-2">{auto.make}</p>
+                  <p className="animal-char text-center text-xl mb-2">{auto.model}</p>
+                  <div className="text-center py-2">
+                    <Link className="button-link cursor-pointer py-2 px-5" to={`/auto/${id}`}>See More</Link>                         
+                  </div>
+                </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )
+      )
+    }

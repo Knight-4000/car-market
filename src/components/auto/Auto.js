@@ -4,8 +4,9 @@ import useFetchCollection from "../../customHooks/useFetchCollection";
 import { selectAutos, STORE_AUTOS } from "../../redux/slice/autoSlice";
 import "./auto.scss";
 import AutoFilter from "./autoFilter/AutoFilter";
-import AutoList from "./autoList/AutoList";
-import AutoItem from "./autoItem/autoItem";
+import AutoList from "./autoList/Autos";
+import AutoItem from "./autoItem/AutoItem";
+import Autos from "./autoList/Autos";
 
 
 const Product = () => {
@@ -28,7 +29,7 @@ const Product = () => {
           <AutoFilter />
         </aside>
         <div className="content">
-          <AutoList autos={autos} />
+          <Autos autos={autos} />
           <AutoItem />
         </div>
       </div>

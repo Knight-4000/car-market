@@ -5,6 +5,7 @@ import { Header, Footer } from './components'
 // Pages 
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
 import { Home, Contact, Login, Register, Reset, Admin } from './pages'
+import AutoDetails from "./components/auto/autoDetails/AutoDetails";
 import NotFound from './pages/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,6 +32,7 @@ function App() {
                </AdminOnlyRoute>
              }
            />
+           <Route path="/auto-details/:id" element={<AutoDetails />} />
         </Routes>
         <Footer />
       </Router>
