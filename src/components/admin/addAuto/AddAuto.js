@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import {
     getStorage,
     ref,
+    docRef,
     uploadBytesResumable,
     getDownloadURL,
 } from "firebase/storage";
@@ -15,29 +16,29 @@ import { useNavigate } from "react-router";
 export default function CreateAuto() {
     const navigate = useNavigate();
     const auth = getAuth();
-    const [loading, setLoading] = useState(false);
     const categories = [
       { id: 1, name: "Sedan" },
       { id: 2, name: "Suv" },
       { id: 3, name: "Sports" }
     ];
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
-      price: 0,
-      categories: "",
-      make: "",
-      model: "",
-      mileage: 0,
-      desc: "",
-      images: {}
+        make: "",
+        model: "",
+        description: "",
+        price: 0,
+        categories: "",
+        mileage: 0,
+        images: {}
     });
 
     const {
-        price,
-        category,
         make,
         model,
+        description,
+        price,
+        category,
         mileage,
-        desc,
         images
     } = formData;
 
@@ -84,9 +85,9 @@ export default function CreateAuto() {
               (snapshot) => {
                 const progress =
                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-               console.log("Upload is " + progress + "% done");
-               switch (snapshot.state) {
 
+               switch (snapshot.state) {
+           
                }
              },
                 (error) => {
@@ -120,23 +121,22 @@ export default function CreateAuto() {
         const docRef = await addDoc(collection(db, "autos"), formDataCopy);
         setLoading(false);
         toast.success("Auto added");
-        navigate(`/admin/all-autos`);
+        navigate('/admin/all-autos');
       }
       if (loading) {
-        return <h3>Loading...</h3>;
+        return <h3>Loading</h3>
     }
     return (
       <main className="max-w-md px-2 mx-auto">
-        <h1 className="text-2xl text-center mt-8 font-bold">Add your auto</h1>
+        <h1 className="text-2xl text-center mt-8 font-bold">Add your cat</h1>
           <form onSubmit={onSubmit}>
-  
           <p className="text-lg mt-6 font-semibold">Make</p>
             <input
               type="text"
               id="make"
               value={make}
               onChange={onChange}
-              placeholder="Name"
+              placeholder="Make"
               maxLength="30"
               minLength="3"
               required
@@ -149,7 +149,7 @@ export default function CreateAuto() {
               id="model"
               value={model}
               onChange={onChange}
-              placeholder="Model"
+              placeholder="model"
               required
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-6"
             />
@@ -157,8 +157,8 @@ export default function CreateAuto() {
           <p className="text-lg font-semibold">Description</p>
             <textarea
               type="text"
-              id="desc"
-              value={desc}
+              id="description"
+              value={description}
               onChange={onChange}
               placeholder="Description"
               required
@@ -176,17 +176,16 @@ export default function CreateAuto() {
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-6"
             />
 
-<p className="text-lg font-semibold">Mileage</p>
+          <p className="text-lg font-semibold">Mileage</p>
             <textarea
               type="number"
               id="mileage"
               value={mileage}
               onChange={onChange}
-              placeholder="Price"
+              placeholder="Mileage"
               required
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-6"
             />
-
           <div className="mb-6">
             <p className="text-lg font-semibold">Image</p>
             <input
@@ -199,7 +198,7 @@ export default function CreateAuto() {
               className="w-full px-3 py-1.5 text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:bg-white focus:border-slate-600"
             />
           </div>
-          <button type="submit" className="button-link py-3 px-5">Add Auto</button>
+          <button type="submit" className="button-link py-3 px-5">Add Cat</button>
         </form>
       </main>
     );

@@ -3,6 +3,19 @@
     font-size: 2.5em;
 }
 
+.img {
+  padding: 1rem;
+  width: 100%;
+  height: auto;
+  max-height: 75%;
+  overflow: hidden;
+  border-bottom: 2px solid #eee;
+  img {
+    width: 100%;
+    max-width: 100%;
+    cursor: pointer;
+  }
+}
 .table {
     padding: 5px;
     width: 100%;
