@@ -4,12 +4,11 @@ import useFetchCollection from "../../customHooks/useFetchCollection";
 import { selectAutos, STORE_AUTOS } from "../../redux/slice/autoSlice";
 import "./auto.scss";
 import AutoFilter from "./autoFilter/AutoFilter";
-import AutoList from "./autoList/Autos";
 import AutoItem from "./autoItem/AutoItem";
-import Autos from "./autoList/Autos";
+import AutoList from "./autoList/AutoList";
 
 
-const Product = () => {
+const Auto = () => {
   const { data, isLoading } = useFetchCollection("autos");
   const autos = useSelector(selectAutos);
   const dispatch = useDispatch();
@@ -29,7 +28,7 @@ const Product = () => {
           <AutoFilter />
         </aside>
         <div className="content">
-          <Autos autos={autos} />
+          <AutoList autos={autos} />
           <AutoItem />
         </div>
       </div>
@@ -37,4 +36,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Auto;
