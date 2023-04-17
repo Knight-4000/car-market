@@ -26,12 +26,12 @@ const Auto = () => {
   return (
     <section>
       <div className="auto">
-        <aside className="filter">
-          {isLoading ? null : <AutoFilter />}    
+        <aside className="filter hidden md:block">
+           <AutoFilter />    
         </aside>
-        <div className="content">
+        <div className="">
           {isLoading && <Loader />}
-          <AutoList autos={autos} />
+            <AutoList autos={autos} />
         </div>
       </div>
     </section>

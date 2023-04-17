@@ -7,20 +7,15 @@ import AutoItem from "../autoItem/AutoItem";
 
 
 const AutoList = ({autos}) => {
-  const [grid, setGrid] = useState(true);
+
   const [search, setSearch] = useState("");
 
   return (
+    <div className="container">
     <div className="auto-list" id="auto">
       <div className="top">
         <div className="icons">
-          <BsFillGridFill
-            size={22}
-            color="#FF2400"
-            onClick={() => setGrid(true)}
-          />
-          <FaListAlt size={24} color="#0066d4" 
-          onClick={() => setGrid(false)} />
+
           <p>
             <b>10</b> Vehicles found.
           </p>
@@ -41,22 +36,26 @@ const AutoList = ({autos}) => {
             <option value="z-a">Z - A</option>
           </select>
         </div>
-        <div className={grid ? 'grid' : 'list'}>
+        </div>
+        <div className="">
           <>
-          {autos.map((auto) => {
-            return (
-              <div key={auto.id}>
-                <AutoItem {...auto} grid={grid}
-                  auto={auto}
-                />
+          <div className="mx-auto">
+            <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto px-4 py-4">
+              {autos.map((auto) => {
+                return (
+                  <div key={auto.id}>
+                    <AutoItem {...auto} 
+                      auto={auto}
+                    />
+                  </div>
+                )
+              })}
               </div>
-            )
-          })}
+            </div>
           </>
-
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 
