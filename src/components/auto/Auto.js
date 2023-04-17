@@ -6,6 +6,8 @@ import "./auto.scss";
 import AutoFilter from "./autoFilter/AutoFilter";
 import AutoItem from "./autoItem/AutoItem";
 import AutoList from "./autoList/AutoList";
+import Loader from "../loader/Loader";
+
 
 
 const Auto = () => {
@@ -25,11 +27,11 @@ const Auto = () => {
     <section>
       <div className="auto">
         <aside className="filter">
-          <AutoFilter />
+          {isLoading ? null : <AutoFilter />}    
         </aside>
         <div className="content">
+          {isLoading && <Loader />}
           <AutoList autos={autos} />
-          <AutoItem />
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import Card from "../../card/Card";
-import styles from "./AutoItem.scss";
+import "./AutoItem.scss";
 
 export default function AutoItem({auto, grid, model, make, category, price, mileage, 
   desc, imageURL, id}) {
@@ -19,7 +19,7 @@ export default function AutoItem({auto, grid, model, make, category, price, mile
           <h4 className='text-black'>{make}</h4>
           <h4 className='text-black'>{model}</h4>
         </div>
-        {!grid && <p className="desc">{desc}</p>}
+        <p className="desc">{desc}</p>
 
         <button className="">Add To Cart</button>
       </div>
