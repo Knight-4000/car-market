@@ -26,7 +26,7 @@ const Auto = () => {
   return (
     <section>
       <div className="auto">
-        <aside className="filter hidden md:block">
+        <aside className="filter">
            <AutoFilter />    
         </aside>
         <div className="">

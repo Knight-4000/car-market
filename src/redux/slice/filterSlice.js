@@ -39,12 +39,12 @@ const filterSlice = createSlice({
 
       if (sort === "a-z") {
         tempAutos = autos.slice().sort((a, b) => {
-          return a.name.localeCompare(b.name);
+          return a.model.localeCompare(b.model);
         });
       }
       if (sort === "z-a") {
         tempAutos = autos.slice().sort((a, b) => {
-          return b.name.localeCompare(a.name);
+          return b.model.localeCompare(a.model);
         });
       }
 
@@ -86,7 +86,7 @@ export const {
   FILTER_BY_SEARCH,
   SORT_AUTOS,
   FILTER_BY_CATEGORY,
-  FILTER_BY_BRAND,
+  FILTER_BY_MAKE,
   FILTER_BY_PRICE,
 } = filterSlice.actions;
 

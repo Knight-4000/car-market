@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
    SORT_AUTOS,
  } from "../../../redux/slice/filterSlice";
 
-
 const AutoList = ({autos}) => {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("latest");
@@ -27,14 +26,13 @@ const AutoList = ({autos}) => {
 
   return (
     <div className="container">
-    <div className="auto-list">
-      <div className="top">
-        <div className="icons">
-
-          <p>
-            <b>{filteredAutos.length}</b> Vehicles found.
-          </p>
-        </div>
+      <div className="auto-list">
+        <div className="top">
+          <div className="icons">
+            <p>
+              <b>{filteredAutos.length}</b> Vehicles found.
+            </p>
+          </div>
         <div>
           <Search value={search} 
           onChange={(e) => setSearch(e.target.value)} />
