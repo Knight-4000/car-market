@@ -9,7 +9,7 @@ export default function AutoItem({auto, model, make, category, price, mileage,
     <>
     <Card>
       <Link to={`/auto-details/${id}`}>
-        <div className="img-view">
+        <div className="img-view" id="autos">
           <img src={imageURL} alt={make} />
         
           

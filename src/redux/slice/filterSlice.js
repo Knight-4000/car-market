@@ -84,7 +84,7 @@ const filterSlice = createSlice({
 
 export const {
   FILTER_BY_SEARCH,
-  SORT_PRODUCTS,
+  SORT_AUTOS,
   FILTER_BY_CATEGORY,
   FILTER_BY_BRAND,
   FILTER_BY_PRICE,

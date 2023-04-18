@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { db } from "../../../firebase/config";
 import Loader from "../../loader/Loader";
+import { HashLink as Link } from 'react-router-hash-link';
+import { BiArrowBack } from "react-icons/bi"
 import Auto from "../Auto";
 import './autodetails.scss';
 
@@ -33,9 +35,12 @@ const AutoDetails = () => {
   return (
     <>
       <div className="container auto">
-         <div>
-           <Link to="/#autos"> Back To Autos</Link>
-         </div>
+         <Link to="/#autos">
+           <div className="flex">
+            <BiArrowBack className="arrow-icon"/>
+             Back To Autos
+           </div>
+         </Link>
          {auto === null ? (
            <Loader alt="Loading" style={{ width: "50px" }} />
          ) : (

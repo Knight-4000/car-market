@@ -1,9 +1,9 @@
-import React from 'react'
+import { useEffect } from 'react'
 import Auto from '../../components/auto/Auto';
 import './home.scss';
 const Home = () => {
-  return (
-    <>
+    return (
+      <>
       <div className='opening'>
         <div className='outer'>
           <div className='inner'>
@@ -13,7 +13,7 @@ const Home = () => {
       </div> 
       <Auto />
     </>
-  )
-}
+  );
+};
 
 export default Home

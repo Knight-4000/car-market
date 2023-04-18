@@ -2,10 +2,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import authReducer from "./slice/authSlice";
 import autoReducer from "./slice/autoSlice";
+import filterReducer from "./slice/filterSlice";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   auto: autoReducer,
+  filter: filterReducer,
 });
 
 const store = configureStore({
