@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   autos: [],
+  minPrice: null,
+  maxPrice: null,
 };
 
 const autoSlice = createSlice({

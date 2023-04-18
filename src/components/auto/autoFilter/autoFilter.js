@@ -15,7 +15,7 @@ import "./autofilter.scss";
 const AutoFilter = () => {
   const [category, setCategory] = useState("All");
   const [make, setMake] = useState("All");
-  const [price, setPrice] = useState(3000);
+  const [price, setPrice] = useState(100000);
   const autos = useSelector(selectAutos);
   const minPrice = useSelector(selectMinPrice);
   const maxPrice = useSelector(selectMaxPrice);
@@ -39,6 +39,10 @@ const AutoFilter = () => {
   useEffect(() => {
     dispatch(FILTER_BY_PRICE({ autos, price }));
   }, [dispatch, autos, price]);
+
+  useEffect(() => {
+    dispatch(FILTER_BY_CATEGORY({ autos, category }));
+  }, [dispatch, autos, category]);
 
   const filterAutos = (cat) => {
     setCategory(cat);
