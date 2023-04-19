@@ -9,6 +9,7 @@ import AutoDetails from "./components/auto/autoDetails/AutoDetails";
 import NotFound from './pages/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cart from './pages/cart/Cart';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
              }
            />
            <Route path="/auto-details/:id" element={<AutoDetails />} />
+           <Route path="/cart" element={<Cart />} />
         </Routes>
         <Footer />
       </Router>
