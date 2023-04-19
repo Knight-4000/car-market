@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
    selectFilteredAutos,
    SORT_AUTOS,
  } from "../../../redux/slice/filterSlice";
+import Pagination from "../../pagination/Pagination";
 
 const AutoList = ({autos}) => {
   const [search, setSearch] = useState("");
@@ -15,6 +16,17 @@ const AutoList = ({autos}) => {
   const filteredAutos = useSelector(selectFilteredAutos);
 
   const dispatch = useDispatch();
+
+    // Pagination states
+    const [currentPage, setCurrentPage] = useState(1);
+    const [autosPerPage, setAutosPerPage] = useState(3);
+    // Get Current Autos
+    const indexOfLastAuto = currentPage * autosPerPage;
+    const indexOfFirstAuto = indexOfLastAuto - autosPerPage;
+    const currentAutos = filteredAutos.slice(
+      indexOfFirstAuto,
+      indexOfLastAuto
+    );
 
   useEffect(() => {
     dispatch(SORT_AUTOS({ autos, sort }));
@@ -54,7 +66,7 @@ const AutoList = ({autos}) => {
           <>
           <div className="mx-auto">
             <div className="grid gap-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto px-4 py-4">
-              {filteredAutos.map((auto) => {
+              {currentAutos.map((auto) => {
                 return (
                   <div key={auto.id}>
                     <AutoItem {...auto} 
@@ -68,6 +80,12 @@ const AutoList = ({autos}) => {
           </>
         </div>
       </div>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        autosPerPage={autosPerPage}
+        totalAutos={filteredAutos.length}
+      />
     </div> 
   );
 };
