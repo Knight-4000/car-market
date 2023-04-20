@@ -14,10 +14,7 @@ import {
 } from "../../redux/slice/authSlice";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
 import { AdminOnlyLink } from "../adminOnlyRoute/AdminOnlyRoute";
-import {
-  CALCULATE_TOTAL_QUANTITY,
-  selectCartTotalQuantity,
-} from "../../redux/slice/cartSlice";
+
 
 
 const logo = (

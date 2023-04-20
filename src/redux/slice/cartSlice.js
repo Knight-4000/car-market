@@ -23,23 +23,22 @@ const cartSlice = createSlice({
         // Item already exists in the cart
         // Increase the cartQuantity
         state.cartItems[autoIndex].cartQuantity += 1;
-        toast.info(`${action.payload.name} increased by one`, {
-          position: "top-left",
-        });
+        toast.info("You have added an auto to your cart", {
+          position: "top-center",
+        })
       } else {
         // Item doesn't exists in the cart
         // Add item to the cart
         const tempAuto = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempAuto);
-        toast.success(`${action.payload.name} will be reserved upon payment`, {
-          position: "top-left",
+        toast.success ("Auto will be reserved upon payment", {
+          position: "top-center",
         });
       }
       // save cart to LS
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     DECREASE_CART(state, action) {
-      console.log(action.payload);
       const autoIndex = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -105,7 +104,6 @@ const cartSlice = createSlice({
       state.cartTotalQuantity = totalQuantity;
     },
     SAVE_URL(state, action) {
-      console.log(action.payload);
       state.previousURL = action.payload;
     },
   },

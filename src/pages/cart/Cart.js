@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  ADD_TO_CART,
   CALCULATE_SUBTOTAL,
   CALCULATE_TOTAL_QUANTITY,
   CLEAR_CART,
-  DECREASE_CART,
   REMOVE_FROM_CART,
   SAVE_URL,
   selectCartItems,
@@ -28,14 +26,6 @@ const Cart = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const navigate = useNavigate();
-
-  const increaseCart = (cart) => {
-    dispatch(ADD_TO_CART(cart));
-  };
-
-  const decreaseCart = (cart) => {
-    dispatch(DECREASE_CART(cart));
-  };
 
   const removeFromCart = (cart) => {
     dispatch(REMOVE_FROM_CART(cart));
@@ -108,25 +98,7 @@ const Cart = () => {
                         />
                       </td>
                       <td>{price}</td>
-                      <td>
-                        <div className="count">
-                          <button
-                            className="btn"
-                            onClick={() => decreaseCart(cart)}
-                          >
-                            -
-                          </button>
-                          <p>
-                            <b>{cartQuantity}</b>
-                          </p>
-                          <button
-                            className="--btn"
-                            onClick={() => increaseCart(cart)}
-                          >
-                            +
-                          </button>
-                        </div>
-                      </td>
+
                       <td>{(price * cartQuantity).toFixed(2)}</td>
                       <td className="icons">
                         <FaTrashAlt

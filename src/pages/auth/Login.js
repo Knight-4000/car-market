@@ -11,13 +11,23 @@ import { auth } from "../../firebase/config";
 import { toast } from "react-toastify";
 import Loader from "../../components/loader/Loader";
 import { GrGooglePlus } from 'react-icons/gr'
+import { useSelector } from "react-redux";
+import { selectPreviousURL } from "../../redux/slice/cartSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const previousURL = useSelector(selectPreviousURL);
   const navigate = useNavigate();
+
+  const redirectUser = () => {
+    if (previousURL.includes("cart")) {
+      return navigate("/cart");
+    }
+    navigate("/");
+  };
 
   const loginUser = (e) => {
     e.preventDefault();
@@ -25,9 +35,10 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        // const user = userCredential.user;
         setIsLoading(false);
-        toast.success("Welcome back...");
-        navigate("/");
+        toast.success("Welcome Back");
+        redirectUser();
       })
       .catch((error) => {
         setIsLoading(false);
@@ -35,18 +46,20 @@ const Login = () => {
       });
   };
 
-  // Sign in with Google
+  // Login with Google
   const provider = new GoogleAuthProvider();
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
+        // const user = result.user;
         toast.success("Login Successfully");
-        navigate("/");
+        redirectUser();
       })
       .catch((error) => {
         toast.error(error.message);
       });
   };
+
 
     return (
       <>
