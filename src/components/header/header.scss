@@ -3,6 +3,7 @@
     position: fixed;
     top: 0;
     transition: all 0.5s;
+    transition-property: all;
     z-index: 9;
   }
   
@@ -44,10 +45,7 @@
       margin-right: 0.3rem;
     }
     
-    .current{
-      text-decoration: underline;
-      color: orange;
-    }
+    .current{ color: orange; }
 
     @media (max-width: 767px) {
       .hidden-mobile {

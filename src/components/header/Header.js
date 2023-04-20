@@ -6,15 +6,18 @@ import { auth } from "../../firebase/config";
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaUserCircle, FaShoppingCart } from 'react-icons/fa';
 import { useDispatch } from "react-redux";
 import { 
   SET_ACTIVE_USER,
   REMOVE_ACTIVE_USER
 } from "../../redux/slice/authSlice";
-
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
 import { AdminOnlyLink } from "../adminOnlyRoute/AdminOnlyRoute";
+import {
+  CALCULATE_TOTAL_QUANTITY,
+  selectCartTotalQuantity,
+} from "../../redux/slice/cartSlice";
 
 
 const logo = (
@@ -26,7 +29,6 @@ const logo = (
       <p className='tagline'>Shop Online. Stay Home.</p>
     </Link>
 </div>
-
 )
 
 const currentLink = ({ isActive }) => (isActive ? `current px-2` : "px-2")
@@ -50,7 +52,6 @@ const Header = () => {
         } else {
           setDisplayName(user.displayName) 
         }
-
           dispatch(SET_ACTIVE_USER({
             email: user.email,
             userName: user.displayName ? user.displayName : displayName,
@@ -74,7 +75,7 @@ const Header = () => {
   };
   
   return (
-    <header>
+    <header className='fixed top-0 z-50'>
      <div className="header">
         {logo}
         <nav>
@@ -83,13 +84,15 @@ const Header = () => {
               <NavLink to="/admin/home" className="pr-2">
                   Admin
               </NavLink>
-            </AdminOnlyLink>
-              
+            </AdminOnlyLink>   
             <NavLink to="/" className={currentLink}>
               Home
             </NavLink>
             <NavLink to="/contact" className={currentLink}>
               Contact
+            </NavLink>
+            <NavLink to="/cart" className={currentLink}>
+            <FaShoppingCart size={20} />
             </NavLink>
           </ul>
           <div className='user-links'>
