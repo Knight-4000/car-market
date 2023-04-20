@@ -2,15 +2,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 // Components
 import { Header, Footer } from './components'
-// Pages 
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
+// Pages 
 import { Home, Contact, Login, Register, Reset, Admin } from './pages'
 import AutoDetails from "./components/auto/autoDetails/AutoDetails";
 import NotFound from './pages/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cart from './pages/cart/Cart';
-
+import CheckoutDetails from './pages/checkout/CheckoutDetails';
 
 function App() {
   return (
@@ -35,6 +35,7 @@ function App() {
            />
            <Route path="/auto-details/:id" element={<AutoDetails />} />
            <Route path="/cart" element={<Cart />} />
+           <Route path="/checkout-details" element={<CheckoutDetails />} />
         </Routes>
         <Footer />
       </Router>
