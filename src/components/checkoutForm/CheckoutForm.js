@@ -90,13 +90,12 @@ const CheckoutForm = () => {
       .confirmPayment({
         elements,
         confirmParams: {
-          // Make sure to change this to your payment completion page
+          // Don't forget to change this once you upload to heroku 
           return_url: "http://localhost:3000/checkout-success",
         },
         redirect: "if_required",
       })
       .then((result) => {
-        // ok - paymentIntent // bad - error
         if (result.error) {
           toast.error(result.error.message);
           setMessage(result.error.message);
@@ -110,14 +109,13 @@ const CheckoutForm = () => {
           }
         }
       });
-
     setIsLoading(false);
   };
 
   return (
     <section>
       <div className="container checkout">
-        <h2>Checkout</h2>
+        <h2 className="text-center">Checkout</h2>
         <form onSubmit={handleSubmit}>
           <div>
             <Card cardClass="card">

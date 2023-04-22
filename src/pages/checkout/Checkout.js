@@ -35,10 +35,11 @@ const Checkout = () => {
     dispatch(CALCULATE_TOTAL_QUANTITY());
   }, [dispatch, cartItems]);
 
-  const description = `Car-Market payment: email: ${customerEmail}, Amount: ${totalAmount}`;
+  const description = `eShop payment: email: ${customerEmail}, Amount: ${totalAmount}`;
 
   useEffect(() => {
-    fetch("https://car-market-firebase.herokuapp.com/create-payment-intent", {
+    // Create PaymentIntent as soon as the page loads
+    fetch("http://localhost:4242/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -55,7 +56,8 @@ const Checkout = () => {
         }
         return res.json().then((json) => Promise.reject(json));
       })
-      .then((data) => {setClientSecret(data.clientSecret);
+      .then((data) => {
+        setClientSecret(data.clientSecret);
       })
       .catch((error) => {
         setMessage("Failed to initialize checkout");
@@ -74,9 +76,7 @@ const Checkout = () => {
   return (
     <>
       <section>
-        <div className="container">
-           {!clientSecret && <h3 className="text-center">{message}</h3>}
-        </div>
+        <div className="container">{!clientSecret && <h3>{message}</h3>}</div>
       </section>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>

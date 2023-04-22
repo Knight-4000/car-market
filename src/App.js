@@ -10,7 +10,9 @@ import NotFound from './pages/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cart from './pages/cart/Cart';
-import CheckoutDetails from './pages/checkout/CheckoutDetails';
+import CheckoutDetails from "./pages/checkout/CheckoutDetails";
+import Checkout from "./pages/checkout/Checkout";
+import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
            <Route path="/auto-details/:id" element={<AutoDetails />} />
            <Route path="/cart" element={<Cart />} />
            <Route path="/checkout-details" element={<CheckoutDetails />} />
+           <Route path="/checkout" element={<Checkout />} />
+           <Route path="/checkout-success" element={<CheckoutSuccess />} />
         </Routes>
         <Footer />
       </Router>

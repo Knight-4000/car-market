@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to Car-Market.");
+  res.send("Welcome to Car Market.");
 });
 
 const array = [];
@@ -28,6 +28,7 @@ const calculateOrderAmount = (items) => {
 app.post("/create-payment-intent", async (req, res) => {
   const { items, shipping, description } = req.body;
 
+  // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
     currency: "usd",
@@ -40,12 +41,13 @@ app.post("/create-payment-intent", async (req, res) => {
         line1: shipping.line1,
         line2: shipping.line2,
         city: shipping.city,
+        country: shipping.country,
         postal_code: shipping.postal_code,
       },
       name: shipping.name,
       phone: shipping.phone,
     },
-    // Summary of user payment sent to user's email
+    // Customer Receipt gets mailed to their inbox here
     // receipt_email: customerEmail
   });
 
