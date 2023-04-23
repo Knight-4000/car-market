@@ -50,7 +50,6 @@ const CheckoutForm = () => {
     }
   }, [stripe]);
 
-  // Save order to Order History
   const saveOrder = () => {
     const today = new Date();
     const date = today.toDateString();

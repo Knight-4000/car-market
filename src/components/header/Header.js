@@ -85,9 +85,11 @@ const Header = () => {
             <NavLink to="/" className={currentLink}>
               Home
             </NavLink>
-            <NavLink to="/contact" className={currentLink}>
-              Contact
-            </NavLink>
+            <ShowOnLogin>
+                  <NavLink to="/order-history" className={currentLink}>
+                    My Orders
+                  </NavLink>
+            </ShowOnLogin>
             <NavLink to="/cart" className={currentLink}>
             <FaShoppingCart size={20} />
             </NavLink>
