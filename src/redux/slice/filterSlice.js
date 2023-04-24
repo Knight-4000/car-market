@@ -79,6 +79,13 @@ const filterSlice = createSlice({
 
       state.filteredAutos = tempAutos;
     },
+    FILTER_BY_MILEAGE(state, action) {
+      const { autos, mileage } = action.payload;
+      let tempAutos = [];
+      tempAutos = autos.filter((auto) => auto.mileage <= mileage);
+
+      state.filteredAutos = tempAutos;
+    },
   },
 });
 
@@ -88,6 +95,7 @@ export const {
   FILTER_BY_CATEGORY,
   FILTER_BY_MAKE,
   FILTER_BY_PRICE,
+  FILTER_BY_MILEAGE,
 } = filterSlice.actions;
 
 export const selectFilteredAutos = (state) => state.filter.filteredAutos;

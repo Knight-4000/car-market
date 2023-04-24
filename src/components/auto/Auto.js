@@ -4,11 +4,11 @@ import useFetchCollection from "../../customHooks/useFetchCollection";
 import { 
   selectAutos, 
   STORE_AUTOS,
-  GET_PRICE_RANGE
+  GET_PRICE_RANGE,
+  GET_MILEAGE_RANGE,
 } from "../../redux/slice/autoSlice";
 import "./auto.scss";
 import AutoFilter from "./autoFilter/AutoFilter";
-import AutoItem from "./autoItem/AutoItem";
 import AutoList from "./autoList/AutoList";
 import Loader from "../loader/Loader";
 
@@ -29,6 +29,11 @@ const Auto = () => {
         autos: data,
       })
     );
+    dispatch(
+      GET_MILEAGE_RANGE({
+        autos: data,
+      })
+    );
   }, [dispatch, data]);
 
   const toggleFilter = () => {
@@ -36,8 +41,8 @@ const Auto = () => {
   };
 
   return (
-    <section>
-      <div className="auto">
+    <div className="container">
+      <div className="auto py-4">
       <aside
           className={
             showFilter ? 'filter show' : 'filter'
@@ -51,7 +56,7 @@ const Auto = () => {
             <AutoList autos={autos} />
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

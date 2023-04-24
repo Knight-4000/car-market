@@ -19,7 +19,7 @@ const Pagination = ({
     setCurrentPage(pageNumber);
   };
 
-  // GO to next page
+  // Next page
   const paginateNext = () => {
     setCurrentPage(currentPage + 1);
     // Show next set of pageNumbers
@@ -29,7 +29,7 @@ const Pagination = ({
     }
   };
 
-  // GO to prev page
+  // Prev page
   const paginatePrev = () => {
     setCurrentPage(currentPage - 1);
     // Show prev set of pageNumbers
