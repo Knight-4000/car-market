@@ -4,7 +4,7 @@ import './App.css';
 import { Header, Footer } from './components'
 import AdminOnlyRoute from "./components/adminOnlyRoute/AdminOnlyRoute";
 // Pages 
-import { Home, Contact, Login, Register, Reset, Admin } from './pages'
+import { Home, Login, Register, Reset, Admin } from './pages'
 import AutoDetails from "./components/auto/autoDetails/AutoDetails";
 import NotFound from './pages/NotFound';
 import { ToastContainer } from 'react-toastify';
@@ -24,7 +24,6 @@ function App() {
       <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset" element={<Reset />} />

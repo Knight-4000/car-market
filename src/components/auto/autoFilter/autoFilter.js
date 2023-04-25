@@ -19,7 +19,7 @@ const AutoFilter = () => {
   const [category, setCategory] = useState("All");
   const [make, setMake] = useState("All");
   const [price, setPrice] = useState(100000);
-  const [mileage, setMileage] = useState(100000);
+  const [mileage, setMileage] = useState(200000);
   const autos = useSelector(selectAutos);
   const minPrice = useSelector(selectMinPrice);
   const maxPrice = useSelector(selectMaxPrice);
@@ -36,7 +36,6 @@ const AutoFilter = () => {
     "All",
     ...new Set(autos.map((auto) => auto.make)),
   ];
-
 
   useEffect(() => {
     dispatch(FILTER_BY_MAKE({ autos, make }));
@@ -63,12 +62,14 @@ const AutoFilter = () => {
   const clearFilters = () => {
     setCategory("All");
     setMake("All");
-    setMileage("100000");
+    //setMileage("100000");
     setPrice(maxPrice);
+    setMileage(maxMileage);
+    //setPrice("100000");
   };
 
   return (
-    <div className="selector py-4">
+    <div className="selector">
       <h4>Categories</h4>
       <div>
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
@@ -105,7 +106,7 @@ const AutoFilter = () => {
           />
         </div>
         <h4>Mileage</h4>
-        <p>{mileage}</p>
+        <p>{`${mileage}`}</p>
         <div className="price">
           <input
             type="range"

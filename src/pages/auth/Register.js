@@ -8,9 +8,7 @@ import { FaCheck } from "react-icons/fa"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/config";
 import Loader from '../../components/loader/Loader';
-
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -105,18 +103,16 @@ const Register = () => {
     <>
     <ToastContainer />
     {isLoading && <Loader />}
-    <h2 className='banner text-center mt-2'>Register</h2>
+    <h1 className='banner text-center mt-2'>Register</h1>
       <div className='grid grid-cols-1 lg:grid-cols-2'>
         <img id="img-container" className='object-cover' src={register} alt="car" style={{
                   backgroundSize: "cover",
           }}/>
-        <div className='form-container -mt-14 mb-6'>
+        <div className='form-container mb-5'>
           <div className='outer'>
             <form onSubmit={registerUser} className='form-control inner py-4'>
+            <h1 className='banner text-center'>Register</h1>
                 <div className="mb-1">
-                 <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
-                    Email Address
-                 </label>
                   <input
                     type="email"
                     placeholder="Email"
@@ -126,9 +122,6 @@ const Register = () => {
                   />
                 </div>
                 <div className="mb-1 password">
-                 <label htmlFor="password" className="block mb-2 text-sm text-gray-600">
-                    Password
-                 </label>
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
@@ -140,9 +133,6 @@ const Register = () => {
                   <span className='icon' onClick={togglePassword}>
                     {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible /> }
                   </span>
-                  <label htmlFor="password" className="block mb-2 text-sm text-gray-600">
-                    Password Confirm
-                 </label>
                   <input
                     type="password"
                     placeholder="Confirm Password"
@@ -158,12 +148,12 @@ const Register = () => {
                 className={passComplete ? "mb-6 mt-2 w-full px-7 py-3 bg-blue-600 text-white text-sm uppercase rounded" :
                 "mb-6 mt-2 w-full px-7 py-3 bg-gray-500 disabled text-white text-sm uppercase rounded"}
                 >Sign Up</button>
-                  <Link to='/reset' className='forgot-password'>Forgot Password?</Link>
-                    <p>Already have an account?</p><Link to="/login" className='register'>
+                <div className='flex'>
+                  <p className='pr-2'>Already have an account?</p><Link to="/login" className='register'>
                     Login
                 </Link>
+                </div>
                 {/* Password Strength */}
-
               <div className={showInstructions ? "show-hints" : "hide-hints"}>
                 <div className='reasons-list bg-gray-200 py-2'>
                   <ul className='list-none'>

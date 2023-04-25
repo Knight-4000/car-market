@@ -60,24 +60,20 @@ const Login = () => {
       });
   };
 
-
     return (
       <>
         {isLoading && <Loader />}
-        <h2 className='banner text-center mt-2'>Login</h2>
-          <div className='grid grid-cols-1 lg:grid-cols-2 '>
+        <h1 className='banner text-center mt-2'>Login</h1>
+          <div className='grid grid-cols-1 lg:grid-cols-2'>
               <img id="img-container" className='object-cover -mt-5' src={login} alt="car" style={{
                           backgroundSize: "cover",
                 }}/>
               <div className='py-4'>
-
                 <div className='form-container mb-5'>
                   <div className="outer">
                   <form onSubmit={loginUser} className='inner py-4'>
                     <div>
-                      <label htmlFor="email" className="block mb-2 text-sm text-gray-600">
-                        Email Address
-                      </label>
+                    <h1 className="banner text-center">Login</h1>
                       <input
                         type="email"
                         placeholder="Your@email.com"
@@ -87,9 +83,6 @@ const Login = () => {
                       />
                     </div>
                     <div className="password">
-                      <label htmlFor="password" className="block mb-2 text-sm text-gray-600">
-                        Password
-                    </label>
                     <input
                       type="password"
                       placeholder="Password"
@@ -99,7 +92,7 @@ const Login = () => {
                       className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring"
                     />
                 </div>
-                <button type="submit" className="mb-6 mt-2 w-full px-7 py-3 bg-blue-600 
+                <button type="submit" className="mb-4 mt-2 w-full px-7 py-3 bg-blue-600 
                     text-white font-medium text-sm uppercase rounded shadow-md 
                     hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg 
                     active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
@@ -114,18 +107,18 @@ const Login = () => {
                       ease-in-out" 
                       onClick={signInWithGoogle}><GrGooglePlus className='google-icon' /> Sign in with Google
                   </button>
-                  <Link className='forgot-password'>Forgot Password?</Link>
-                    <p>Don't have an account?</p><Link to="/register" className='register'>
-                    Register
-                </Link>
-            </form>
-</div>
+                  <div className='grid grid-cols-1 lg:grid-cols-2 place-items-center'>
+                    <div><Link className='forgot-password'>Forgot Password?</Link></div>
+                    <div className="flex">       <p className="pr-3">No account yet?</p><Link to="/register" className='register'>
+                      Register
+                    </Link>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
-
-      </div>
-    </div>
-
-    
+          </div>
+        </div>
     </>
   );
 };

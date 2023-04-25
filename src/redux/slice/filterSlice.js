@@ -47,8 +47,7 @@ const filterSlice = createSlice({
           return b.model.localeCompare(a.model);
         });
       }
-
-      state.filteredProducts = tempAutos;
+      state.filteredAutos = tempAutos;
     },
     FILTER_BY_CATEGORY(state, action) {
       const { autos, category } = action.payload;

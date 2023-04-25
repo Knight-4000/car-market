@@ -15,7 +15,6 @@ import Loader from "../loader/Loader";
 const Auto = () => {
   const { data, isLoading } = useFetchCollection("autos");
   const autos = useSelector(selectAutos);
-  const [showFilter, setShowFilter] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,25 +35,14 @@ const Auto = () => {
     );
   }, [dispatch, data]);
 
-  const toggleFilter = () => {
-    setShowFilter(!showFilter);
-  };
-
   return (
     <div className="container">
       <div className="auto py-4">
-      <aside
-          className={
-            showFilter ? 'filter show' : 'filter'
-          }
-        >
-          {isLoading ? null : <AutoFilter />}
-        </aside>
-               
-        <div className="">
+        <div className="filter">
+          <AutoFilter />
+        </div>         
           {isLoading && <Loader />}
             <AutoList autos={autos} />
-        </div>
       </div>
     </div>
   );
