@@ -8,7 +8,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../../firebase/config";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import Loader from "../../components/loader/Loader";
 import { GrGooglePlus } from 'react-icons/gr'
 import { useSelector } from "react-redux";
@@ -62,13 +62,13 @@ const Login = () => {
 
     return (
       <>
+      <ToastContainer />
         {isLoading && <Loader />}
         <h1 className='banner text-center mt-2'>Login</h1>
           <div className='grid grid-cols-1 lg:grid-cols-2'>
-              <img id="img-container" className='object-cover -mt-5' src={login} alt="car" style={{
+              <img id="img-container" className='object-cover' src={login} alt="car" style={{
                           backgroundSize: "cover",
                 }}/>
-              <div className='py-4'>
                 <div className='form-container mb-5'>
                   <div className="outer">
                   <form onSubmit={loginUser} className='inner py-4'>
@@ -109,15 +109,15 @@ const Login = () => {
                   </button>
                   <div className='grid grid-cols-1 lg:grid-cols-2 place-items-center'>
                     <div><Link className='forgot-password'>Forgot Password?</Link></div>
-                    <div className="flex">       <p className="pr-3">No account yet?</p><Link to="/register" className='register'>
-                      Register
-                    </Link>
+                    <div className="flex">
+                      <p className="pr-3">No account yet?</p><Link to="/register" className='register'>
+                        Register
+                      </Link>
                     </div>
                   </div>
                 </form>
               </div>
             </div>
-          </div>
         </div>
     </>
   );

@@ -26,12 +26,10 @@ const ViewAutos = () => {
       const q = query(autosRef, orderBy("createdAt", "desc"));
 
       onSnapshot(q, (snapshot) => {
-        // console.log(snapshot.docs);
         const allAutos = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        console.log(allAutos);
         setAutos(allAutos);
         setIsLoading(false);
       });
