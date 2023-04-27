@@ -45,7 +45,7 @@ const cartSlice = createSlice({
 
       if (state.cartItems[autoIndex].cartQuantity > 1) {
         state.cartItems[autoIndex].cartQuantity -= 1;
-        toast.info(`${action.payload.name} decreased by one`, {
+        toast.info(`Cart decreased by one`, {
           position: "top-left",
         });
       } else if (state.cartItems[autoIndex].cartQuantity === 1) {
@@ -53,7 +53,7 @@ const cartSlice = createSlice({
           (item) => item.id !== action.payload.id
         );
         state.cartItems = newCartItem;
-        toast.success(`${action.payload.name} removed from cart`, {
+        toast.success('Auto removed from cart', {
           position: "top-left",
         });
       }
@@ -65,7 +65,7 @@ const cartSlice = createSlice({
       );
 
       state.cartItems = newCartItem;
-      toast.success(`${action.payload.name} removed from cart`, {
+      toast.success('Auto removed from cart', {
         position: "top-left",
       });
 

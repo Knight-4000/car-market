@@ -1,0 +1,14 @@
+.cart-column{
+    margin-top: 2.5rem;
+}
+
+.cart-icons{
+    margin-right: 0.5rem;
+    color: #fff; 
+    fontSize:1.5em;
+}
+@media (max-width: 768px) {
+    .cart-column {
+     margin-top: 0;
+    }
+  }

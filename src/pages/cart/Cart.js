@@ -13,10 +13,11 @@ import {
 import './cart.scss';
 import { FaTrashAlt } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "../../components/card/Card";
 import { selectIsLoggedIn } from "../../redux/slice/authSlice";
 import { BiArrowBack } from "react-icons/bi";
 import { toast } from "react-toastify";
+import CardTwo from "../../components/card/CardTwo";
+import { MdShoppingCart } from "react-icons/md"
 
 const Cart = () => {
   const cartItems = useSelector(selectCartItems);
@@ -59,91 +60,91 @@ const Cart = () => {
         <h2>Shopping Cart</h2>
         {cartItems.length === 0 ? (
           <>
-            <p>Your cart is currently empty.</p>
+            <p className="text-center text-3xl">Your cart is currently empty.</p>
             <br />
+            <div className="flex flex-col items-center">
             <Link to="/#autos">
-           <div className="flex">
-            <BiArrowBack className="arrow-icon"/>
-             Back To Autos
-           </div>
-         </Link>
+              <button style={{display: "flex", justifyContent: "center"}}
+                      className="bg-blue-600 inline-flex items-center px-3 py-3 font-medium 
+                      rounded mb-6 mt-2 w-50 px-7 py-3 text-white font-medium text-sm uppercase 
+                      shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 
+                      focus:shadow-lg active:bg-blue-800 active:shadow-lg transition duration-150 
+                      ease-in-out" 
+                      ><BiArrowBack className="cart-icons"/> Back To Autos
+                  </button>
+              </Link>   
+              </div>
           </>
         ) : (
           <>
-            <table>
-              <thead>
-                <tr>
-                  <th>s/n</th>
-                  <th>Model</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cartItems.map((cart, index) => {
-                  const { id, model, price, imageURL, cartQuantity } = cart;
-                  return (
-                    <tr key={id}>
-                      <td>{index + 1}</td>
-                      <td>
-                        <p>
-                          <b>{model}</b>
-                        </p>
-                        <img
-                          src={imageURL}
-                          alt={model}
-                          style={{ width: "100px" }}
-                        />
-                      </td>
-                      <td>{price}</td>
-
-                      <td>{(price * cartQuantity).toFixed(2)}</td>
-                      <td className="icons">
-                        <FaTrashAlt
-                          size={19}
-                          color="red"
-                          onClick={() => removeFromCart(cart)}
-                        />
-                      </td>
-                    </tr>
+            {cartItems.map((cart) => {
+              const { id, model, price, mileage, imageURL, cartQuantity } = cart;
+                return (
+                  <CardTwo className="border">
+                    <div className="container mx-auto"> 
+                      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-5 gap-6">
+                        <div className="flex justify-center rounded-xl p-6">                        
+                          <img className="object-cover"
+                            src={imageURL}
+                            alt={model}
+                            style={{ width: "auto"}}
+                          />
+                        </div>
+                        <div className="flex justify-center cart-column"><p className="text-xl">{model}</p></div>
+                        <div className="flex justify-center cart-column"><p className="text-xl">Mileage:{mileage}</p></div>
+                        <div className="flex justify-center cart-column"><p className="text-xl text-red-600 cursor-pointer"onClick={() => removeFromCart(cart)}>Remove</p></div>
+                        <div className="flex justify-center cart-column"><p className="text-2xl text-blue-600">${(price * cartQuantity).toFixed(2)}</p></div>
+                      </div>
+                    </div>
+                    </CardTwo>
                   );
                 })}
-              </tbody>
-            </table>
-            <div className="summary">
-              <button className="--btn --btn-danger" onClick={clearCart}>
-                Clear Cart
-              </button>
-              <div className="checkout">
-              <Link to="/#autos">
-                <div className="flex">
-                  <BiArrowBack className="arrow-icon"/>
-                  Back To Autos
-                </div>
-              </Link>
                 <br />
-                <Card cardClass="card">
-                  <p>
-                    <b> {`Cart item(s): ${cartTotalQuantity}`}</b>
-                  </p>
-                  <div className="text">
-                    <h4>Subtotal:</h4>
-                    <h3>{`$${cartTotalAmount.toFixed(2)}`}</h3>
+                <CardTwo>
+                <div className="text">
+                    <p>Subtotal:</p>
+                    <p>{`$${cartTotalAmount.toFixed(2)}`}</p>
                   </div>
-                  <p>Tax and shipping calculated at checkout</p>
-                  <button
-                    className="btn"
+                
+                  <p className="pl-4">Tax and shipping calculated at checkout</p>
+               
+               <div className="flex place-content-center">
+                  <button style={{display: "flex", justifyContent: "center"}} 
+                    className="bg-orange-600 
+                    inline-flex items-center px-3 py-3 font-medium rounded mb-6 mt-2 w-50 px-7 py-3 
+                    text-white font-medium text-sm uppercase shadow-md hover:bg-orange-700 hover:shadow-lg 
+                    focus:bg-orange-700 focus:shadow-lg active:bg-orange-800 active:shadow-lg 
+                    transition duration-150 ease-in-out"
                     onClick={checkout}
                   >
-                    Checkout
+                    <MdShoppingCart className="cart-icons"/>Checkout
                   </button>
-                </Card>
-              </div>
+                  </div>
+                </CardTwo>
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 place-items-center">
+              <Link onClick={clearCart}>
+                <button style={{display: "flex", justifyContent: "center"}} className="bg-red-600 
+                  inline-flex items-center px-3 py-3 font-medium rounded mb-6 mt-2 w-50 px-7 py-3 
+                  text-white font-medium text-sm uppercase shadow-md hover:bg-red-700 hover:shadow-lg 
+                  focus:bg-red-700 focus:shadow-lg active:bg-red-800 active:shadow-lg 
+                  transition duration-150 ease-in-out">  
+                    <FaTrashAlt className="cart-icons"/>Clear Cart
+                </button>
+             </Link>
+              <Link to="/#autos">
+              <button style={{display: "flex", justifyContent: "center"}}
+                      className="bg-blue-600 inline-flex items-center px-3 py-3 font-medium 
+                      rounded mb-6 mt-2 w-50 px-7 py-3 text-white font-medium text-sm uppercase 
+                      shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 
+                      focus:shadow-lg active:bg-blue-800 active:shadow-lg transition duration-150 
+                      ease-in-out" 
+                      ><BiArrowBack className="cart-icons"/> Back To Autos
+                  </button>
+              </Link>   
             </div>
           </>
         )}
+        
       </div>
     </section>
   );

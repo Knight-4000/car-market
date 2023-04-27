@@ -66,44 +66,50 @@ const AutoDetails = () => {
               </CardTwo>
               <div className="content mt-10">
                 <CardTwo>
-                <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-4 place-items-center">
-              <h2 className="text-center model">{auto.model} Details</h2>
-                <p className="text-center price">{`$${auto.price}`}</p>
-            
-                <div>
-                    <p className="text-center">Mileage:<p className="text-center"></p>{auto.make}</p>
+                <div className="container mx-auto bg-gray-100 py-5">
+                  <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="flex justify-center text-xl border-2 
+                    border-gray-300 rounded-xl p-6 details-box"><MdSpeed size="1.5em" color="white"/>
+                    <p className="pl-2 text-white">Mileage:</p><p className="pl-2 text-white">{auto.make}</p>
+                    </div>
+                    <div className="flex justify-center text-xl border-2 
+                    border-gray-300 rounded-xl p-6 details-box"><AiOutlineCheck size="1.5em" color="white"/>
+                    <p className="pl-2 text-white">Title:</p><p className="pl-2 text-white">{auto.make}</p>
+                    </div>
+                    <div className="flex justify-center text-xl border-2 
+                    border-gray-300 rounded-xl p-6 details-box"><BsFillDropletFill size="1.5em" color="white"/>
+                    <p className="pl-2 text-white">Exterior:</p><p className="pl-2 text-white">{auto.make}</p>
+                    </div>
+                    <div className="flex justify-center text-xl border-2 
+                    border-gray-300 rounded-xl p-6 details-box"><GiCarSeat size="1.5em" color="white"/>
+                    <p className="pl-2 text-white">Interior:</p><p className="pl-2 text-white">{auto.make}</p>
+                    </div>
+                    <div className="flex justify-center text-xl border-2 
+                    border-gray-300 rounded-xl p-6 details-box"><FaGasPump size="1.5em" color="white"/>
+                    <p className="pl-2 text-white">Fuel:</p><p className="pl-2 text-white">{auto.make}</p>
+                    </div>
+                    <div className="flex justify-center text-xl border-2 
+                    border-gray-300 rounded-xl p-6 details-box"><TbEngine size="1.5em" color="white"/>
+                    <p className="pl-2 text-white">Engine:</p><p className="pl-2 text-white">{auto.make}</p>
+                    </div>
+                    <div className="flex justify-center text-xl border-2 
+                    border-gray-300 rounded-xl p-6 details-box"><BsSpeedometer size="1.5em" color="white"/>
+                    <p className="pl-2 text-white">MPG:</p><p className="pl-2 text-white">{auto.make}</p>
+                    </div>
+                    <div className="flex justify-center text-xl border-2 
+                    border-gray-300 rounded-xl p-6 details-box"><GiGearStickPattern size="1.5em" color="white"/>
+                    <p className="pl-2 text-white">Transmission:</p><p className="pl-2 text-white">{auto.make}</p>
+                    </div>
                   </div>
-                  <div>
-                      <p className="text-center"> Clean Title?<p className="text-center"></p>{auto.make}</p>
-                  </div>
-                  <div>
-                    <p className="text-center">Exterior:<p className="text-center"></p>{auto.make}</p>
-                  </div>
-                  <div>
-                    <p className="text-center">Interior:<p className="text-center"></p>{auto.make}</p>
-                  </div>
-              
-                  <div>
-                    <p className="text-center">Fuel:<p className="text-center"></p>{auto.make}</p>
-                  </div>
-                  <div>
-                    <p className="text-center">Engine:<p className="text-center"></p>{auto.make}</p>
-                  </div>
-                  <div>
-                    <p className="text-center">Mileage:<p className="text-center"></p>{auto.make}</p>
-                  </div>
-                  <div>
-                    <p className="text-center">Transmission:<p className="text-center"></p>{auto.make}</p>
-                  </div>
-         </div>
+                </div>
               </CardTwo>
               <div class="flex justify-center py-4">
                 <button type="submit" style={{display: "flex", justifyContent: "center"}}
-              className="bg-orange-600 inline-flex items-center px-3 py-3 font-medium 
-              rounded mb-6 mt-2 w-full px-7 py-3 text-white font-medium text-sm uppercase 
-              shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 
-              focus:shadow-lg active:bg-orange-800 active:shadow-lg transition duration-150 
-              ease-in-out" onClick={() => addToCart(auto)}> Place Order</button>
+                    className="bg-orange-600 inline-flex items-center px-3 py-3 font-medium 
+                    rounded mb-6 mt-2 w-50 px-7 py-3 text-white font-medium text-sm uppercase 
+                    shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 
+                    focus:shadow-lg active:bg-orange-800 active:shadow-lg transition duration-150 
+                    ease-in-out" onClick={() => addToCart(auto)}> Place Order</button>
               </div>
             </div>
           </div>
