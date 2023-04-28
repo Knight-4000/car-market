@@ -1,3 +1,4 @@
+.hamburger-link{font-family: Raleway;}
 
 .mobile-link{
   text-decoration: none;
@@ -70,17 +71,17 @@
 /* ----- animations--------- */
 /* clicked */
 .burger-bar.clicked:nth-child(1){
-    transform: rotate(45deg) translate(0.85em, 1.25em);
+    transform: rotate(45deg) translate(0.75em, 1.25em);
     transition: ease-out 0.5s;
 }
 
 .burger-bar.clicked:nth-child(2){
-    transform: rotate(180deg) translate(-0.2em, -0.17em);
+    transform: rotate(180deg) translate(-0.1em, -0.17em);
     transition: ease-out 0.5s;
 }
 
 .burger-bar.clicked:nth-child(3){
-    transform: rotate(135deg) translate(-0.6em, 1em);
+    transform: rotate(135deg) translate(-0.5em, 1em);
     transition: ease-out 0.5s;
 }
 
