@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 const CheckoutSuccess = () => {
   return (
-    <section>
-      <div className="container">
-        <h2 className="text-center">Checkout Successful</h2>
-        <p className="text-center">Thank you for your purchase</p>
+    <section className="mt-10">
+      <div className="mt-10">
+        <h1 className="text-center text-4xl">Checkout Successful</h1>
+        <p className="text-center">Thank you for your purchase!</p>
           <div className="outer">
             <div className="inner py-4">
               <button className="mb-6 mt-2 w-full px-7 py-3 bg-blue-600 

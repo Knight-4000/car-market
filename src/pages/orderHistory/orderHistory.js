@@ -26,9 +26,9 @@ const OrderHistory = () => {
   const filteredOrders = orders.filter((order) => order.userID === userID);
 
   return (
-    <section>
-      <div className="container order">
-        <h2>Your Order History</h2>
+    <section className="mt-10">
+      <div className="container order mt-10">
+        <h1 className="text-center text-2xl">Your Order History</h1>
         <br />
         <>
           {isLoading && <Loader />}
@@ -39,7 +39,6 @@ const OrderHistory = () => {
               <table>
                 <thead>
                   <tr>
-                    <th>s/n</th>
                     <th>Date</th>
                     <th>Order ID</th>
                     <th>Order Amount</th>
@@ -57,7 +56,6 @@ const OrderHistory = () => {
                     } = order;
                     return (
                       <tr key={id} onClick={() => handleClick(id)}>
-                        <td>{index + 1}</td>
                         <td>
                           {orderDate} at {orderTime}
                         </td>

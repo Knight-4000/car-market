@@ -123,7 +123,7 @@ const CheckoutForm = () => {
           </div>
           <div>
             <Card cardClass="card pay">
-              <h3>Stripe Checkout</h3>
+              <h1>Stripe Checkout</h1>
               <PaymentElement id="payment-element" />
               <button
                 disabled={isLoading || !stripe || !elements}

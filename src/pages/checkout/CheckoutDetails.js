@@ -7,7 +7,7 @@ import {
   SAVE_SHIPPING_ADDRESS,
 } from "../../redux/slice/checkoutSlice";
 import CheckoutSummary from "../../components/checkoutSummary/CheckoutSummary.js";
-
+import './checkout.scss';
 
 const initialAddressState = {
   name: "",
@@ -54,13 +54,13 @@ const CheckoutDetails = () => {
   };
 
   return (
-    <section>
-      <div className="container checkout">
-        <h2>Checkout Details</h2>
+    <section className="mt-10">
+      <div className="container checkout mt-10">
+        <h1 className="checkout-banner text-center pb-5">Checkout Details</h1>
         <form onSubmit={handleSubmit}>
           <div>
             <Card cardClass="card">
-              <h3>Shipping Address</h3>
+              <p>Shipping Address</p>
               <label>Recipient Name</label>
               <input
                 type="text"
@@ -126,8 +126,8 @@ const CheckoutDetails = () => {
               />
             </Card>
             {/* BILLING ADDRESS */}
-            <Card cardClass="card">
-              <h3>Billing Address</h3>
+            <Card cardClass="card mt-5">
+              <p>Billing Address</p>
               <label>Recipient Name</label>
               <input
                 type="text"
@@ -191,8 +191,12 @@ const CheckoutDetails = () => {
                 value={billingAddress.phone}
                 onChange={(e) => handleBilling(e)}
               />
-              <button type="submit" className="--btn --btn-primary">
-                Proceed To Checkout
+              <button type="submit" className="bg-blue-600 inline-flex items-center px-3 py-3 
+                  font-medium rounded mb-6 mt-2 w-50 px-7 py-3 text-white font-medium text-sm 
+                  uppercase shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 
+                  focus:shadow-lg active:bg-blue-800 active:shadow-lg 
+                  transition duration-150 ease-in-out">
+                    Proceed To Checkout
               </button>
             </Card>
           </div>

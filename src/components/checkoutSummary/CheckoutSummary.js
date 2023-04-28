@@ -16,11 +16,11 @@ const CheckoutSummary = () => {
 
   return (
     <div>
-      <h3>Checkout Summary</h3>
+      <h1>Checkout Summary</h1>
       <div>
         {cartItems.length === 0 ? (
           <>
-            <p>No item in your cart.</p>
+            <p>No autos in your cart.</p>
             <button className="btn">
               <Link to="/#products">Back To Shop</Link>
             </button>
@@ -28,21 +28,20 @@ const CheckoutSummary = () => {
         ) : (
           <div>
             <p>
-              <b>{`Cart item(s): ${cartTotalQuantity}`}</b>
+            {cartItems.map((item) => {
+              const { id, model, price} = item;
+              return (
+                <div key={id}>
+                  <h4>Auto: {model}</h4>
+                  <p>Unit price: {price}</p>
+            </div>
+              );
+            })}
             </p>
             <div className="text">
               <h4>Subtotal:</h4>
-              <h1>{cartTotalAmount.toFixed(2)}</h1>
+              <h1>{`$${cartTotalAmount.toFixed(2)}`}</h1>
             </div>
-            {cartItems.map((item, index) => {
-              const { id, model, price} = item;
-              return (
-                <Card key={id} cardClass="card">
-                  <h4>Auto: {model}</h4>
-                  <p>Unit price: {price}</p>
-                </Card>
-              );
-            })}
           </div>
         )}
       </div>
