@@ -70,8 +70,10 @@ const AutoFilter = () => {
 
   return (
     <div className="selector">
-      <h4>Categories</h4>
-      <div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-1">
+        <h4 className="text-center">Categories</h4>
+      
+      <div className="flex flex-col justify-center items-center">
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
           {allCategories.map((category, index) => {
             return (
@@ -81,9 +83,11 @@ const AutoFilter = () => {
             );
           })}
         </select>  
-        </div>  
-      <h4>Make</h4>
-      <div className="">
+        </div>
+        <div>
+      <h4 className="text-center">Make</h4>
+      </div>
+      <div className="flex flex-col justify-center items-center">
       <select value={make} onChange={(e) => setMake(e.target.value)}>
           {allMakes.map((make, index) => {
             return (
@@ -93,8 +97,10 @@ const AutoFilter = () => {
             );
           })}
         </select>
-        <h4>Price</h4>
-        <p>{`$${price}`}</p>
+      </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-1">
+        <h4 className="text-center">Price</h4>
+        <p className="text-center">{`$${price}`}</p>
         <div className="price">
           <input
             type="range"
@@ -105,8 +111,8 @@ const AutoFilter = () => {
             max={maxPrice}
           />
         </div>
-        <h4>Mileage</h4>
-        <p>{`${mileage}`}</p>
+        <h4 className="text-center">Mileage</h4>
+        <p className="text-center">{`${mileage}`}</p>
         <div className="price">
           <input
             type="range"
@@ -117,10 +123,12 @@ const AutoFilter = () => {
             max={maxMileage}
           />
         </div>
+        </div>
         <br />
-        <button className="btn filter-button px-7 py-3" onClick={clearFilters}>Clear Filters</button>
+        <button className="btn filter-button px-3 py-3" onClick={clearFilters}>Clear Filters</button>
+        </div>
       </div>
-    </div>
+ 
   );
 };
 

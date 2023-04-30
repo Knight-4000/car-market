@@ -1,3 +1,9 @@
+select { 
+  width: 10em;
+  background: #E5E4E2;
+  border-radius: 12px;
+  padding: 3px 7px 3px 3px;
+}
 .auto-list {
     width: 100%;
     .top {
@@ -23,4 +29,29 @@
   
   .amount{
     padding: 0;
+  }
+
+  @media (max-width: 1023px) {
+    .mobile-filter {
+      display:block;
+    }
+  }
+
+@media (min-width: 1024px) {
+  .mobile-filter {
+    display:none;
+  }
+  }
+
+  @media (max-width: 640px) {
+    .search-bar{
+      margin-top: -3vh;
+
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .sort-large{
+      display: none;
+    }
   }
