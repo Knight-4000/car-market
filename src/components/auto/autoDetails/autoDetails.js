@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
 import { Link, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { db } from "../../../firebase/config";
 import Loader from "../../loader/Loader";
-import Auto from "../Auto";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   ADD_TO_CART,
   CALCULATE_TOTAL_QUANTITY,
-  DECREASE_CART,
-  selectCartItems,
 } from "../../../redux/slice/cartSlice";
 import useFetchDocument from "../../../customHooks/useFetchDocument";
 import CardTwo from "../../card/CardTwo";
@@ -29,13 +23,7 @@ const AutoDetails = () => {
   const { id } = useParams();
   const [auto, setAuto] = useState(null);
   const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
   const { document } = useFetchDocument("autos", id);
-
-  const cart = cartItems.find((cart) => cart.id === id);
-  const isCartAdded = cartItems.findIndex((cart) => {
-    return cart.id === id;
-  });
 
   useEffect(() => {
     setAuto(document);
@@ -43,11 +31,6 @@ const AutoDetails = () => {
 
   const addToCart = (auto) => {
     dispatch(ADD_TO_CART(auto));
-    dispatch(CALCULATE_TOTAL_QUANTITY());
-  };
-
-  const decreaseCart = (auto) => {
-    dispatch(DECREASE_CART(auto));
     dispatch(CALCULATE_TOTAL_QUANTITY());
   };
 
@@ -67,38 +50,40 @@ const AutoDetails = () => {
               <div className="content mt-10">
                 <CardTwo>
                 <div className="container mx-auto bg-gray-100 py-5">
+                <h1 className="text-center details-name">{auto.year} {auto.model} {auto.trim}</h1>
                   <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
+                     
                     <div className="flex justify-center text-xl border-2 
                     border-gray-300 rounded-xl p-6 details-box"><MdSpeed size="1.5em" color="white"/>
-                    <p className="pl-2 text-white">Mileage:</p><p className="pl-2 text-white">{auto.make}</p>
+                      <p className="pl-2 text-white">Mileage:</p><p className="pl-2 text-white">{auto.mileage}</p>
                     </div>
                     <div className="flex justify-center text-xl border-2 
                     border-gray-300 rounded-xl p-6 details-box"><AiOutlineCheck size="1.5em" color="white"/>
-                    <p className="pl-2 text-white">Title:</p><p className="pl-2 text-white">{auto.make}</p>
+                      <p className="pl-2 text-white">Clean Title:</p><p className="pl-2 text-white">{auto.title}</p>
                     </div>
                     <div className="flex justify-center text-xl border-2 
                     border-gray-300 rounded-xl p-6 details-box"><BsFillDropletFill size="1.5em" color="white"/>
-                    <p className="pl-2 text-white">Exterior:</p><p className="pl-2 text-white">{auto.make}</p>
+                      <p className="pl-2 text-white">Exterior:</p><p className="pl-2 text-white">{auto.exterior}</p>
                     </div>
                     <div className="flex justify-center text-xl border-2 
                     border-gray-300 rounded-xl p-6 details-box"><GiCarSeat size="1.5em" color="white"/>
-                    <p className="pl-2 text-white">Interior:</p><p className="pl-2 text-white">{auto.make}</p>
+                      <p className="pl-2 text-white">Interior:</p><p className="pl-2 text-white">{auto.interior}</p>
                     </div>
                     <div className="flex justify-center text-xl border-2 
                     border-gray-300 rounded-xl p-6 details-box"><FaGasPump size="1.5em" color="white"/>
-                    <p className="pl-2 text-white">Fuel:</p><p className="pl-2 text-white">{auto.make}</p>
-                    </div>
-                    <div className="flex justify-center text-xl border-2 
-                    border-gray-300 rounded-xl p-6 details-box"><TbEngine size="1.5em" color="white"/>
-                    <p className="pl-2 text-white">Engine:</p><p className="pl-2 text-white">{auto.make}</p>
+                      <p className="pl-2 text-white">Fuel:</p><p className="pl-2 text-white">{auto.fuel}</p>
                     </div>
                     <div className="flex justify-center text-xl border-2 
                     border-gray-300 rounded-xl p-6 details-box"><BsSpeedometer size="1.5em" color="white"/>
-                    <p className="pl-2 text-white">MPG:</p><p className="pl-2 text-white">{auto.make}</p>
+                      <p className="pl-2 text-white">MPG:</p><p className="pl-2 text-white">{auto.mpg}</p>
+                    </div>
+                    <div className="flex justify-center text-xl border-2 
+                    border-gray-300 rounded-xl p-6 details-box"><TbEngine size="1.5em" color="white"/>
+                      <p className="pl-2 text-white">Engine:</p><p className="pl-2 text-white">{auto.engine}</p>
                     </div>
                     <div className="flex justify-center text-xl border-2 
                     border-gray-300 rounded-xl p-6 details-box"><GiGearStickPattern size="1.5em" color="white"/>
-                    <p className="pl-2 text-white">Transmission:</p><p className="pl-2 text-white">{auto.make}</p>
+                      <p className="pl-2 text-white">Transmission:</p><p className="pl-2 text-white">{auto.transmission}</p>
                     </div>
                   </div>
                 </div>

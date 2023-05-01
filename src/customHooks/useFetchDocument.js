@@ -23,7 +23,7 @@ const useFetchDocument = (collectionName, documentID) => {
 
   useEffect(() => {
     getDocument();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return { document };
 };

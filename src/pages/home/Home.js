@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Auto from '../../components/auto/Auto';
 import './home.scss';
 const Home = () => {

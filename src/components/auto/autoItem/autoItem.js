@@ -8,7 +8,7 @@ import {
 import Card from "../../card/Card";
 import "./AutoItem.scss";
 
-export default function AutoItem({auto, model, make, category, price, mileage, 
+export default function AutoItem({auto, model, make, category, trim, price, mileage, 
   desc, imageURL, id}) {
     const dispatch = useDispatch();
   
@@ -24,7 +24,7 @@ export default function AutoItem({auto, model, make, category, price, mileage,
           <img src={imageURL} alt={make} />     
           <h4 className='text-black text-center model py-2'><b>{model}</b></h4>
           <div className="flex justify-between py-2">
-            <p className=''>Trim</p>
+            <p className=''>{trim}</p>
             <p className='text-black text-left mileage'>{mileage} miles</p> 
           </div>
           <p className='text-black price py-2'>${price}</p>

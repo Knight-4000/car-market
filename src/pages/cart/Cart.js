@@ -8,7 +8,6 @@ import {
   SAVE_URL,
   selectCartItems,
   selectCartTotalAmount,
-  selectCartTotalQuantity,
 } from "../../redux/slice/cartSlice";
 import './cart.scss';
 import { FaTrashAlt } from "react-icons/fa";
@@ -22,7 +21,6 @@ import { MdShoppingCart } from "react-icons/md"
 const Cart = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotalAmount = useSelector(selectCartTotalAmount);
-  const cartTotalQuantity = useSelector(selectCartTotalQuantity);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -80,7 +78,7 @@ const Cart = () => {
             {cartItems.map((cart) => {
               const { id, model, price, mileage, imageURL, cartQuantity } = cart;
                 return (
-                  <CardTwo className="border">
+                  <CardTwo className="border" key={id}>
                     <div className="container mx-auto"> 
                       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-5 gap-6">
                         <div className="flex justify-center rounded-xl p-6">                        

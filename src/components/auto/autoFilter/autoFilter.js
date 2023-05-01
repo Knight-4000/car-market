@@ -54,11 +54,6 @@ const AutoFilter = () => {
     dispatch(FILTER_BY_CATEGORY({ autos, category }));
   }, [dispatch, autos, category]);
 
-  const filterAutos = (cat) => {
-    setCategory(cat);
-    dispatch(FILTER_BY_CATEGORY({ autos, category: cat }));
-  };
-
   const clearFilters = () => {
     setCategory("All");
     setMake("All");

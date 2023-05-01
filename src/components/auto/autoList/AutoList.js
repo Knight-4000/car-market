@@ -10,16 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
    FILTER_BY_MAKE,
    FILTER_BY_CATEGORY,
  } from "../../../redux/slice/filterSlice";
- import {
-  selectMaxPrice,
-  selectMinPrice,
-  selectMaxMileage,
-  selectMinMileage,
-  selectAutos,
-} from "../../../redux/slice/autoSlice";
 
 import Pagination from "../../pagination/Pagination";
-import AutoFilter from "../autoFilter/AutoFilter";
 
 const AutoList = ({autos}) => {
   const [search, setSearch] = useState("");
@@ -27,18 +19,12 @@ const AutoList = ({autos}) => {
   const filteredAutos = useSelector(selectFilteredAutos);
   const [category, setCategory] = useState("All");
   const [make, setMake] = useState("All");
-  const minPrice = useSelector(selectMinPrice);
-  const maxPrice = useSelector(selectMaxPrice);
-  const [price, setPrice] = useState(100000);
-  const [mileage, setMileage] = useState(200000);
-  const minMileage = useSelector(selectMinMileage);
-  const maxMileage = useSelector(selectMaxMileage);
 
   const dispatch = useDispatch();
 
     // Pagination states
     const [currentPage, setCurrentPage] = useState(1);
-    const [autosPerPage, setAutosPerPage] = useState(3);
+    const [autosPerPage] = useState(3);
     // Get Current Autos
     const indexOfLastAuto = currentPage * autosPerPage;
     const indexOfFirstAuto = indexOfLastAuto - autosPerPage;
@@ -71,11 +57,6 @@ const AutoList = ({autos}) => {
   useEffect(() => {
     dispatch(FILTER_BY_CATEGORY({ autos, category }));
   }, [dispatch, autos, category]);
-
-  const filterAutos = (cat) => {
-    setCategory(cat);
-    dispatch(FILTER_BY_CATEGORY({ autos, category: cat }));
-  };
 
   return (
     <div className="container">

@@ -30,7 +30,7 @@ const useFetchCollection = (collectionName) => {
 
   useEffect(() => {
     getCollection();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return { data, isLoading };
 };

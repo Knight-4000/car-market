@@ -10,7 +10,7 @@ const Pagination = ({
   const pageNumbers = [];
   const totalPages = totalAutos / autosPerPage;
   // Limit the page Numbers shown
-  const [pageNumberLimit, setpageNumberLimit] = useState(3);
+  const [pageNumberLimit] = useState(3);
   const [maxPageNumberLimit, setmaxPageNumberLimit] = useState(3);
   const [minPageNumberLimit, setminPageNumberLimit] = useState(0);
 
@@ -33,7 +33,7 @@ const Pagination = ({
   const paginatePrev = () => {
     setCurrentPage(currentPage - 1);
     // Show prev set of pageNumbers
-    if ((currentPage - 1) % pageNumberLimit == 0) {
+    if ((currentPage - 1) % pageNumberLimit === 0) {
       setmaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
       setminPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
@@ -69,7 +69,7 @@ const Pagination = ({
       <li
         onClick={paginateNext}
         className={
-          currentPage == pageNumbers[pageNumbers.length - 1]
+          currentPage === pageNumbers[pageNumbers.length - 1]
             ? 'hidden'
             : null
         }

@@ -2,9 +2,9 @@ import { getDownloadURL, ref, uploadBytesResumable, getStorage } from "firebase/
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { db, storage } from "../../../firebase/config";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
 import Loader from "../../loader/Loader";
+import { db } from "../../../firebase/config";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
 import './addauto.scss';
@@ -20,13 +20,21 @@ const initialState = {
    price: 0,
    category: "",
    make: "",
+   trim: "",
+   title: "",
+   mpg: "",
+   fuel: "",
+   exterior: "",
+   interior: "",
+   engine:"",
+   transmission: "",
    name: "",
    mileage: 0,
    desc: "",
  };
 
  const auth = getAuth();
-const AddAuto = () => {
+ const AddAuto = () => {
    const [auto, setAuto] = useState({
        ...initialState,
      });
@@ -71,38 +79,47 @@ const AddAuto = () => {
      const addAuto = (e) => {
        e.preventDefault();
        setIsLoading(true);
-  
-       try {
-         const docRef = addDoc(collection(db, "autos"), {
-           imageURL: auto.imageURL,
-           price: Number(auto.price),
-           category: auto.category,
-           desc: auto.desc,
-           mileage: Number(auto.mileage),
-           make: auto.make,
-           model: auto.name,
-           createdAt: Timestamp.now().toDate(),
-         });
-         setIsLoading(false);
-         setUploadProgress(0);
-         setAuto({ ...initialState });
-  
-         toast.success("Auto uploaded successfully.");
-         navigate("/admin/all-autos");
-       } catch (error) {
-         setIsLoading(false);
-         toast.error(error.message);
+
+        try {
+          const docRef = addDoc(collection(db, "autos"), {
+            imageURL: auto.imageURL,
+            price: Number(auto.price),
+            category: auto.category,
+            desc: auto.desc,
+            mileage: Number(auto.mileage),
+            year: auto.year,
+            make: auto.make,
+            model: auto.name,
+            exterior: auto.exterior,
+            interior: auto.interior,
+            trim: auto.trim,
+            title: auto.title,
+            mpg: auto.mpg,
+            fuel: auto.fuel,
+            engine: auto.engine,
+            transmission: auto.transmission,
+            createdAt: Timestamp.now().toDate(),
+          });
+          setIsLoading(false);
+          setUploadProgress(0);
+          setAuto({ ...initialState });
+   
+          toast.success("Auto uploaded successfully.");
+          navigate("/admin/all-autos");
+        } catch (error) {
+          setIsLoading(false);
+          toast.error(error.message);
        }
      };
   
  return (
    <>
         {isLoading && <Loader />}
-      <div className="">
-        <h1>Add New Auto</h1>
+      <div className="mt-10">
+        <h1 className="text-center">Add New Auto</h1>
         <div className="card">
           <form onSubmit={addAuto}>
-            <label>Auto Make:</label>
+            <label>Make:</label>
             <input
               type="text"
               placeholder="Make"
@@ -112,7 +129,7 @@ const AddAuto = () => {
               onChange={(e) => handleInputChange(e)}
             />
 
-           <label>Auto Model:</label>
+           <label>Model:</label>
            <input
                type="text"
                placeholder="Model"
@@ -122,6 +139,94 @@ const AddAuto = () => {
                onChange={(e) => handleInputChange(e)}
            />
 
+        <label>Year:</label>
+           <input
+               type="number"
+               placeholder="Year"
+               required
+               name="year"
+               value={auto.year}
+               onChange={(e) => handleInputChange(e)}
+           />
+          <label>Trim:</label>
+           <input
+               type="text"
+               placeholder="Trim"
+               required
+               name="trim"
+               value={auto.trim}
+               onChange={(e) => handleInputChange(e)}
+           />
+
+          <label>Exterior:</label>
+           <input
+               type="text"
+               placeholder="Exterior"
+               required
+               name="exterior"
+               value={auto.exterior}
+               onChange={(e) => handleInputChange(e)}
+           />
+
+          <label>Interior:</label>
+            <input
+               type="text"
+               placeholder="Interior"
+               required
+               name="interior"
+               value={auto.interior}
+               onChange={(e) => handleInputChange(e)}
+           />
+
+          <label>Title:</label>
+            <input
+               type="text"
+               placeholder="Title"
+               required
+               name="title"
+               value={auto.title}
+               onChange={(e) => handleInputChange(e)}
+           /> 
+
+          <label>MPG:</label>
+            <input
+               type="text"
+               placeholder="MPG"
+               required
+               name="mpg"
+               value={auto.mpg}
+               onChange={(e) => handleInputChange(e)}
+           />
+
+          <label>Fuel:</label>
+            <input
+               type="text"
+               placeholder="Fuel"
+               required
+               name="fuel"
+               value={auto.fuel}
+               onChange={(e) => handleInputChange(e)}
+           />
+
+        <label>Engine:</label>
+            <input
+               type="text"
+               placeholder="Engine"
+               required
+               name="engine"
+               value={auto.engine}
+               onChange={(e) => handleInputChange(e)}
+           />
+
+          <label>Transmission:</label>
+            <input
+               type="text"
+               placeholder="Transmission"
+               required
+               name="transmission"
+               value={auto.transmission}
+               onChange={(e) => handleInputChange(e)}
+           />
             <label>Auto image:</label>
             <div className="group">
               {uploadProgress === 0 ? null : (

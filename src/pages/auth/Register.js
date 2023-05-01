@@ -26,10 +26,9 @@ const Register = () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
         setIsLoading(false)
         toast.success("Yay! Let's go buy a car!")
-        navigate("/login")
+        navigate("/")
       })
       .catch((error) => {
         toast.error(error.message)

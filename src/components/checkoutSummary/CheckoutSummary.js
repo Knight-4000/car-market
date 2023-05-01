@@ -4,15 +4,12 @@ import { Link } from "react-router-dom";
 import {
   selectCartItems,
   selectCartTotalAmount,
-  selectCartTotalQuantity,
 } from "../../redux/slice/cartSlice";
-import Card from "../card/Card";
 import './checkoutsummary.scss';
 
 const CheckoutSummary = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotalAmount = useSelector(selectCartTotalAmount);
-  const cartTotalQuantity = useSelector(selectCartTotalQuantity);
 
   return (
     <div>
