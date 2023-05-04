@@ -50,12 +50,13 @@ const AutoDetails = () => {
               <div className="content mt-10">
                 <CardTwo>
                 <div className="container mx-auto bg-gray-100 py-5">
-                <h1 className="text-center details-name">{auto.year} {auto.model} {auto.trim}</h1>
+                <h1 className="text-center details-name">{auto.year} {auto.make} {auto.model} {auto.trim}</h1>
                   <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
-                     
                     <div className="flex justify-center text-xl border-2 
                     border-gray-300 rounded-xl p-6 details-box"><MdSpeed size="1.5em" color="white"/>
-                      <p className="pl-2 text-white">Mileage:</p><p className="pl-2 text-white">{auto.mileage}</p>
+                      <p className="pl-2 text-white">Mileage:</p><p className="pl-2 text-white">
+                      {(auto.mileage).toLocaleString({maximumFractionDigits: 2})}
+                      </p>
                     </div>
                     <div className="flex justify-center text-xl border-2 
                     border-gray-300 rounded-xl p-6 details-box"><AiOutlineCheck size="1.5em" color="white"/>

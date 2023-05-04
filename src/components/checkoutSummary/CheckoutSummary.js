@@ -30,14 +30,14 @@ const CheckoutSummary = () => {
               return (
                 <div key={id}>
                   <h4>Auto: {model}</h4>
-                  <p>Unit price: {price}</p>
+                  <p>Unit price: {price.toLocaleString({maximumFractionDigits: 2})}</p>
             </div>
               );
             })}
             </p>
             <div className="text">
               <h4>Subtotal:</h4>
-              <h1>{`$${cartTotalAmount.toFixed(2)}`}</h1>
+              <h1>{`$${cartTotalAmount.toLocaleString({maximumFractionDigits: 2})}`}</h1>
             </div>
           </div>
         )}

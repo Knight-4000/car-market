@@ -89,9 +89,10 @@ const Cart = () => {
                           />
                         </div>
                         <div className="flex justify-center cart-column"><p className="text-xl">{model}</p></div>
-                        <div className="flex justify-center cart-column"><p className="text-xl">Mileage:{mileage}</p></div>
+                        <div className="flex justify-center cart-column"><p className="text-xl">Mileage:{(mileage).toLocaleString({maximumFractionDigits: 2})}</p></div>
                         <div className="flex justify-center cart-column"><p className="text-xl text-red-600 cursor-pointer"onClick={() => removeFromCart(cart)}>Remove</p></div>
-                        <div className="flex justify-center cart-column"><p className="text-2xl text-blue-600">${(price * cartQuantity).toFixed(2)}</p></div>
+                        <div className="flex justify-center cart-column"><p className="text-2xl 
+                        text-blue-600">${(price * cartQuantity).toLocaleString({maximumFractionDigits: 2})}</p></div>
                       </div>
                     </div>
                     </CardTwo>
@@ -101,7 +102,7 @@ const Cart = () => {
                 <CardTwo>
                 <div className="text">
                     <p>Subtotal:</p>
-                    <p>{`$${cartTotalAmount.toFixed(2)}`}</p>
+                    <p>{`$${cartTotalAmount.toLocaleString({maximumFractionDigits: 2})}`}</p>
                   </div>
                 
                   <p className="pl-4">Tax and shipping calculated at checkout</p>
